@@ -1,0 +1,34 @@
+{
+  "fixtureType": "sanitized-structure",
+  "request": { "method": "GET", "path": "/" },
+  "response": {
+    "contentType": "text/html",
+    "observedLinks": [
+      "/local/ubion/allcourse/regular/index.php",
+      "/local/ubonline/index.php?cgroup=1",
+      "/local/ubonline/index.php?cgroup=2",
+      "/local/ubeclass/index.php",
+      "/local/opencontent/index.php",
+      "/local/ubmanual/",
+      "/mod/ubboard/view.php",
+      "/pulleycampus.php"
+    ],
+    "noticeSelectors": [
+      ".open-notice-card-list > .open-notice-card-item a[href]",
+      ".open-notice-card-item .notice-date",
+      "a[href*='/mod/ubboard/article.php']"
+    ],
+    "courseSelectors": [
+      ".open-course-list a.course-card.wide.hybrid",
+      ".course-thumbnail",
+      ".course-status",
+      ".course-semester",
+      ".course-info-section-item",
+      ".course-info-tags"
+    ],
+    "notes": [
+      "The public home used one open-course-list containing mixed designated and teaching-and-learning cards.",
+      "Course type is read from .course-info-tags rather than inferred from the containing section."
+    ]
+  }
+}

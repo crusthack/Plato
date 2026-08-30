@@ -1,0 +1,1118 @@
+:root.plato-classic-login-active {
+  --login-blue: #005baa;
+  --login-width: 1200px;
+  --login-border: #e6e6e6;
+}
+
+:host {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #333;
+  font-family: Arial, "Noto Sans KR", sans-serif;
+  --login-blue: #005baa;
+  --login-width: 1200px;
+  --login-border: #e6e6e6;
+}
+
+#plato-classic-login-host {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#plato-classic-login-host[hidden] {
+  display: none !important;
+}
+
+/* 로그인 폼은 비밀번호 관리자가 인식하기 쉽도록 light DOM에 유지합니다. */
+#plato-classic-login-host > #plato-classic-login-form {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#plato-classic-login-host > #plato-classic-login-form .form-inline-form {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 6px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#plato-classic-login-host > #plato-classic-login-form .form-control,
+#plato-classic-login-host > #plato-classic-login-form .btn {
+  box-sizing: border-box !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  margin: 0 !important;
+  padding: 7px 11px !important;
+  border: 1px solid #e4e4e4 !important;
+  border-radius: 0 !important;
+  background: #f0f0f0 !important;
+  color: #333 !important;
+  font: 14px/1.4 Arial, "Noto Sans KR", sans-serif !important;
+  box-shadow: none !important;
+}
+
+#plato-classic-login-host > #plato-classic-login-form .form-control {
+  width: 150px !important;
+  max-width: 150px !important;
+}
+
+#plato-classic-login-host > #plato-classic-login-form .form-control::placeholder {
+  color: #b2b2b2 !important;
+}
+
+#plato-classic-login-host > #plato-classic-login-form .form-control:focus {
+  border-color: #005baa !important;
+  outline: 1px solid #005baa !important;
+}
+
+#plato-classic-login-host > #plato-classic-login-form .btn-login {
+  min-width: 74px !important;
+  border-color: #2464b2 !important;
+  border-radius: 2px !important;
+  background: #2464b2 !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  font-weight: 700 !important;
+}
+
+#plato-classic-login-host > #plato-classic-login-form .btn-login:disabled {
+  cursor: wait !important;
+  opacity: .6 !important;
+}
+
+#plato-classic-login-host > #plato-classic-login-form .dropdown-lang .btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  color: #555 !important;
+  text-decoration: none !important;
+  border-color: #e4e4e4 !important;
+  border-radius: 2px !important;
+  background: #fff !important;
+  white-space: nowrap !important;
+}
+
+#plato-classic-login-host > #plato-classic-login-form .dropdown-lang {
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+}
+
+#plato-classic-login-host > #plato-classic-login-form .dropdown-lang img {
+  width: 16px !important;
+  height: 16px !important;
+  margin-right: 5px !important;
+}
+
+:root.plato-classic-login-active body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #fff !important;
+  color: #333 !important;
+  font-family: Arial, "Noto Sans KR", sans-serif !important;
+}
+
+:root.plato-classic-login-active .plato-classic-login-source {
+  display: none !important;
+}
+
+#plato-classic-login,
+#plato-classic-login * {
+  box-sizing: border-box;
+}
+
+#plato-classic-login {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#plato-classic-login a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#plato-classic-login .login-container {
+  width: 100%;
+  max-width: var(--login-width);
+  margin: 0 auto;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (min-width: 1250px) {
+  #plato-classic-login .login-container {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+#plato-classic-login .logo-login {
+  background: #fff;
+  padding: 12px 0;
+  border-bottom: 1px solid #e1e3e6;
+}
+
+#plato-classic-login .row-form {
+  display: grid;
+  min-height: 38px;
+  grid-template-columns: 240px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 24px;
+}
+
+#plato-classic-login .col-logo {
+  width: auto;
+  min-width: 0;
+}
+
+#plato-classic-login .col-login {
+  display: flex;
+  width: auto;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#plato-classic-login .col-login slot[name="login-form"] {
+  display: block;
+  width: 100%;
+}
+
+#plato-classic-login .site-home-link {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  border-radius: 2px;
+}
+
+#plato-classic-login .site-home-link:focus-visible {
+  outline: 2px solid var(--login-blue);
+  outline-offset: 4px;
+}
+
+#plato-classic-login .site-logo {
+  display: block;
+  width: 168px;
+  height: 34px;
+}
+
+#plato-classic-login .form-inline-form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+#plato-classic-login .form-control,
+#plato-classic-login .btn {
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  background: #fff;
+  font-size: 14px;
+}
+
+#plato-classic-login .form-control {
+  width: 190px;
+}
+
+#plato-classic-login .btn-login {
+  min-width: 86px;
+  border-color: var(--login-blue);
+  background: var(--login-blue);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+#plato-classic-login .btn-login:disabled {
+  cursor: wait;
+  opacity: .6;
+}
+
+#plato-classic-login .dropdown-lang {
+  display: inline-flex;
+  align-items: center;
+  color: #555;
+}
+
+#plato-classic-login .login-menu {
+  padding: 14px 0;
+  border-bottom: 1px solid #e1e3e6;
+  background: #fff;
+}
+
+#plato-classic-login .login-menu .menu {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#plato-classic-login .login-menu .menu-item {
+  margin: 5px 55px 5px 0;
+  font-size: 15px;
+}
+
+#plato-classic-login .login-menu .menu-item:last-child {
+  margin-right: 0;
+}
+
+#plato-classic-login .login-menu .menu-item a {
+  color: #000;
+  font-weight: 700;
+}
+
+#plato-classic-login .login-menu .menu-item a:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+@media (max-width: 991.98px) {
+  #plato-classic-login .login-menu {
+    display: none;
+  }
+}
+
+#plato-classic-login .login-image {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  background: #174b7f;
+}
+
+#plato-classic-login #carousel-image,
+#plato-classic-login .carousel-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#plato-classic-login .carousel-state {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#plato-classic-login #carousel-image > .login-container {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+#plato-classic-login .carousel-indicators {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: auto;
+}
+
+#plato-classic-login .carousel-indicators li {
+  width: 100px;
+  padding: 0 0 6px;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: .42;
+  outline-offset: 4px;
+  transition: opacity .2s ease, border-color .2s ease;
+}
+
+#plato-classic-login .carousel-indicators label {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+#plato-classic-login .carousel-indicators li.active {
+  border-bottom-width: 2px;
+  opacity: 1;
+}
+
+#plato-classic-login .carousel-item {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity .65s ease, visibility .65s step-end;
+}
+
+#plato-classic-login .carousel-item.active {
+  z-index: 1;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .65s ease;
+}
+
+#plato-classic-login #plato-classic-slide-1:checked ~ .carousel-inner .carousel-slide-1,
+#plato-classic-login #plato-classic-slide-2:checked ~ .carousel-inner .carousel-slide-2,
+#plato-classic-login #plato-classic-slide-3:checked ~ .carousel-inner .carousel-slide-3 {
+  z-index: 1;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .65s ease;
+}
+
+#plato-classic-login #plato-classic-slide-1:checked ~ .login-container .carousel-indicators li:nth-child(1),
+#plato-classic-login #plato-classic-slide-2:checked ~ .login-container .carousel-indicators li:nth-child(2),
+#plato-classic-login #plato-classic-slide-3:checked ~ .login-container .carousel-indicators li:nth-child(3) {
+  border-bottom-width: 2px;
+  opacity: 1;
+}
+
+#plato-classic-login #plato-classic-slide-1:focus-visible ~ .login-container .carousel-indicators li:nth-child(1) label,
+#plato-classic-login #plato-classic-slide-2:focus-visible ~ .login-container .carousel-indicators li:nth-child(2) label,
+#plato-classic-login #plato-classic-slide-3:focus-visible ~ .login-container .carousel-indicators li:nth-child(3) label {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+#plato-classic-login .carousel-background {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+#plato-classic-login .carousel-item .rgba-bg {
+  position: absolute;
+  z-index: 1;
+  inset: 0 auto 0 0;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(90deg, rgb(0 56 117 / 82%) 0%, rgb(0 56 117 / 35%) 48%, transparent 100%);
+}
+
+#plato-classic-login .carousel-text {
+  position: absolute;
+  z-index: 2;
+  top: 120px;
+  right: 0;
+  left: 0;
+  color: #fff;
+}
+
+#plato-classic-login .carousel-text p {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(20px, 1.5vw, 28px);
+  line-height: 1.55;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 35%);
+}
+
+#plato-classic-login .carousel-text .carousel-subtext {
+  margin-top: 2px;
+  font-size: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #plato-classic-login .carousel-item,
+  #plato-classic-login .carousel-indicators li {
+    transition: none;
+  }
+}
+
+#plato-classic-login .notice-card {
+  margin: 37px 0;
+  background: #fff;
+}
+
+#plato-classic-login .row-notice {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 38px;
+}
+
+#plato-classic-login .notice-column,
+#plato-classic-login .link-column {
+  width: calc(50% - 15px);
+}
+
+#plato-classic-login .row-notice .title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+#plato-classic-login .list,
+#plato-classic-login .link-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#plato-classic-login .list-item {
+  margin-bottom: 5px;
+  padding-left: 15px;
+  position: relative;
+}
+
+#plato-classic-login .list-item::before {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--login-blue);
+  content: "";
+}
+
+#plato-classic-login .list-item-link {
+  display: flex;
+  overflow: hidden;
+}
+
+#plato-classic-login .list-item-link .subject {
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#plato-classic-login .list-item-link .date {
+  flex: 0 0 auto;
+  margin-left: 30px;
+  color: #999;
+}
+
+#plato-classic-login .link-list {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+#plato-classic-login .link-list-item {
+  flex: 0 0 110px;
+  border: 1px solid var(--login-border);
+  border-radius: 3px;
+  background: #fff;
+}
+
+#plato-classic-login .link-list-item a {
+  display: block;
+  overflow: hidden;
+  padding: 75px 15px 12px;
+  border-radius: 3px;
+  background-position: center 20px;
+  background-repeat: no-repeat;
+  color: #333;
+  font-weight: 700;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#plato-classic-login .link-list-item a::before {
+  display: none;
+  content: none;
+}
+
+#plato-classic-login .link-list-item-notice a { background-image: url("../assets/icons/notice.png"); }
+#plato-classic-login .link-list-item-qna a { background-image: url("../assets/icons/qna.png"); }
+#plato-classic-login .link-list-item-faq a { background-image: url("../assets/icons/faq.png"); }
+#plato-classic-login .link-list-item-manual a { background-image: url("../assets/icons/manual.png"); }
+
+#plato-classic-login .row-card {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 30px;
+}
+
+#plato-classic-login .card-list {
+  display: block;
+  padding: 18px 24px 21px;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 18px;
+  background-position: right 27px center;
+  background-repeat: no-repeat;
+}
+
+#plato-classic-login .card-list:hover {
+  color: #fff;
+}
+
+#plato-classic-login .card-list-video {
+  background-color: #2a323e;
+  background-image: url("../assets/icons/video.png");
+}
+
+#plato-classic-login .card-list-translation {
+  background-color: #4299cb;
+  background-image: url("../assets/icons/translation.png");
+}
+
+#plato-classic-login .card-list-seri {
+  background-color: #ed7c32;
+  background-image: url("../assets/icons/kocw.png");
+}
+
+#plato-classic-login .card-list-kmooc {
+  background-color: #00aaa1;
+  background-image: url("../assets/icons/kmooc.png");
+}
+
+#plato-classic-login .card-list-ppt {
+  background-color: #d85560;
+  background-image: url("../assets/icons/ai-courseware.png");
+}
+
+#plato-classic-login .card-list .text {
+  height: 71px;
+  overflow: hidden;
+  padding: 0 50px 44px 0;
+  background: url("../assets/icons/card-text.png") no-repeat left bottom;
+  font-size: 15px;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-all;
+}
+
+#plato-classic-content-search {
+  padding: 38px 0;
+  background: linear-gradient(120deg, #075a9f, #063f83);
+}
+
+#plato-classic-content-search .form-content-search {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+#plato-classic-content-search .search-title {
+  width: 300px;
+  flex: 0 0 300px;
+  color: #fff;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+#plato-classic-content-search .search-input {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+#plato-classic-content-search .search-input .form-control {
+  width: 100%;
+  min-height: 52px;
+  padding-left: 27px;
+  border: 0;
+  border-radius: 26px 0 0 26px;
+}
+
+#plato-classic-content-search .btn-submit {
+  min-width: 75px;
+  min-height: 52px;
+  border: 0;
+  border-radius: 0 26px 26px 0;
+  color: var(--login-blue);
+  font-weight: 700;
+}
+
+#plato-classic-content {
+  padding: 22px 0 38px;
+  background: #fff;
+}
+
+#plato-classic-login .course-latest {
+  padding: 36px 0 38px;
+  border-bottom: 1px solid var(--login-border);
+}
+
+#plato-classic-login .course-latest:last-child {
+  border-bottom: 0;
+}
+
+#plato-classic-login .latest-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+#plato-classic-login .latest-title {
+  margin: 0;
+  color: #222;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+#plato-classic-login .course-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+#plato-classic-login .course-card {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--login-border);
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 5px 16px rgb(31 52 72 / 7%);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+#plato-classic-login .course-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgb(31 52 72 / 13%);
+}
+
+#plato-classic-login .course-image {
+  height: 145px;
+  overflow: hidden;
+  background: #edf1f4;
+}
+
+#plato-classic-login .course-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#plato-classic-login .course-body {
+  min-height: 105px;
+  padding: 15px;
+}
+
+#plato-classic-login .course-category {
+  overflow: hidden;
+  margin-bottom: 8px;
+  color: var(--login-blue);
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#plato-classic-login .course-name {
+  display: -webkit-box;
+  overflow: hidden;
+  color: #222;
+  font-weight: 700;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+#plato-classic-login .course-empty {
+  grid-column: 1 / -1;
+  display: flex;
+  min-height: 116px;
+  padding: 24px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid var(--login-border);
+  background: #f8f9fa;
+}
+
+#plato-classic-login .course-empty p {
+  margin: 0;
+  color: #666;
+}
+
+#plato-classic-login .course-empty-link {
+  flex-shrink: 0;
+  padding: 10px 18px;
+  border: 1px solid #2464b2;
+  color: #2464b2;
+  font-weight: 700;
+}
+
+#plato-classic-login .course-empty-link:hover {
+  background: #2464b2;
+  color: #fff;
+}
+
+#plato-classic-login .open-footer {
+  width: 100%;
+  background: #161819;
+  color: #fff;
+}
+
+#plato-classic-login .open-footer .open-container {
+  display: flex;
+  width: min(calc(100% - 80px), 1440px);
+  margin: 0 auto;
+  padding: 56px 0 120px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+#plato-classic-login .open-footer-logo img {
+  display: block;
+  width: auto;
+  height: 48px;
+}
+
+#plato-classic-login .open-footer .divider {
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: #41474b;
+  opacity: 1;
+}
+
+#plato-classic-login .open-footer-bottom {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#plato-classic-login .open-footer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+#plato-classic-login .open-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#plato-classic-login .open-footer-links a {
+  color: #c4c8cc;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+#plato-classic-login .open-footer-copy {
+  margin: 0;
+  color: #575e64;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+#plato-classic-login .open-footer-family {
+  position: relative;
+  min-width: 283px;
+  flex-shrink: 0;
+}
+
+#plato-classic-login .open-footer-family-input {
+  position: relative;
+  width: 100%;
+  height: 46px;
+  padding: 12px 76px 12px 16px;
+  border: 1px solid #41474b;
+  border-radius: 4px;
+  background: transparent;
+  color: #aab0b5;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: left;
+}
+
+#plato-classic-login .open-footer-family-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  width: 60px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 4px 4px 0;
+  background: #575e64;
+  color: #c4c8cc;
+}
+
+#plato-classic-login .open-footer-family-menu {
+  position: absolute;
+  z-index: 5;
+  right: 0;
+  bottom: calc(100% + 6px);
+  display: none;
+  width: 100%;
+  margin: 0;
+  padding: 6px;
+  border: 1px solid #41474b;
+  border-radius: 4px;
+  background: #2c2f32;
+  list-style: none;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 25%);
+}
+
+#plato-classic-login .open-footer-family.is-open .open-footer-family-menu {
+  display: block;
+}
+
+#plato-classic-login .open-footer-family-menu a {
+  display: block;
+  padding: 9px 10px;
+  border-radius: 3px;
+  color: #e0e3e5;
+}
+
+#plato-classic-login .open-footer-family-menu a:hover {
+  background: #41474b;
+}
+
+@media (max-width: 991.98px) {
+  #plato-classic-login .row-notice {
+    flex-direction: column;
+  }
+
+  #plato-classic-login .notice-column,
+  #plato-classic-login .link-column {
+    width: 100%;
+  }
+
+  #plato-classic-login .link-list {
+    margin-top: 32px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: 0;
+    row-gap: 10px;
+  }
+
+  #plato-classic-login .link-list-item {
+    flex-basis: 49%;
+  }
+
+  #plato-classic-login .link-list-item a {
+    padding-top: 57px;
+    background-position: center 10px;
+  }
+
+  #plato-classic-login .row-card {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 30px;
+  }
+
+  #plato-classic-login .card-list {
+    padding-right: 12px;
+    padding-left: 12px;
+    background-image: none;
+  }
+
+  #plato-classic-login .card-list .text {
+    height: 27px;
+    padding: 0;
+    background: none;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  #plato-classic-login .course-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #plato-classic-content-search .form-content-search {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #plato-classic-content-search .search-title {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  #plato-classic-login .open-footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #plato-classic-login .login-image {
+    height: 220px;
+  }
+
+  #plato-classic-login .carousel-indicators {
+    top: 14px;
+  }
+
+  #plato-classic-login .carousel-indicators li {
+    width: 58px;
+  }
+
+  #plato-classic-login .carousel-item .rgba-bg {
+    width: 100%;
+  }
+
+  #plato-classic-login .carousel-text {
+    top: 72px;
+  }
+
+  #plato-classic-login .carousel-text p {
+    max-width: 90%;
+    font-size: 18px;
+  }
+
+  #plato-classic-login .row-form {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+  }
+
+  #plato-classic-login .col-logo,
+  #plato-classic-login .col-login {
+    width: 100%;
+    flex-basis: 100%;
+  }
+
+  #plato-classic-login .col-logo {
+    margin-bottom: 0;
+  }
+
+  #plato-classic-login .site-home-link {
+    display: flex;
+    justify-content: center;
+  }
+
+  #plato-classic-login-host > #plato-classic-login-form .form-inline-form {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+@media (max-width: 560px) {
+  #plato-classic-login .login-menu .menu {
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  #plato-classic-login .login-menu .menu-item {
+    min-width: 115px;
+  }
+
+  #plato-classic-login .link-list-item {
+    width: auto;
+  }
+
+  #plato-classic-login .course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #plato-classic-login .course-empty {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #plato-classic-login-host > #plato-classic-login-form .form-inline-form {
+    align-items: stretch !important;
+    flex-direction: column !important;
+    margin: 0 16px !important;
+  }
+
+  #plato-classic-login-host > #plato-classic-login-form .form-control,
+  #plato-classic-login-host > #plato-classic-login-form .btn-login,
+  #plato-classic-login-host > #plato-classic-login-form .dropdown-lang,
+  #plato-classic-login-host > #plato-classic-login-form .dropdown-lang .btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 8px !important;
+  }
+
+  #plato-classic-login-host > #plato-classic-login-form .dropdown-lang .btn {
+    justify-content: center !important;
+  }
+
+  #plato-classic-login .open-footer .open-container {
+    width: min(calc(100% - 32px), 1440px);
+    padding: 32px 0 60px;
+  }
+
+  #plato-classic-login .open-footer-logo img {
+    height: 36px;
+  }
+
+  #plato-classic-login .open-footer-links a {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  #plato-classic-login .open-footer-copy {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+  }
+
+  #plato-classic-login .open-footer-family {
+    width: 100%;
+    min-width: 0;
+  }
+
+  #plato-classic-login .open-footer-family-input {
+    height: 36px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  #plato-classic-login .open-footer-family-btn {
+    width: 50px;
+  }
+}

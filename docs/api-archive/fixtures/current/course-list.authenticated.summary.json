@@ -1,0 +1,32 @@
+{
+  "fixtureType": "sanitized-structure",
+  "request": {
+    "method": "GET",
+    "path": "/local/ubion/allcourse/regular/index.php",
+    "query": { "year": "2026", "semester": "20" }
+  },
+  "response": {
+    "contentType": "text/html",
+    "listSelectors": [
+      ".ubion-allcourse-course-list a.course-card",
+      "a[href*='/course/view.php?id=']"
+    ],
+    "fields": {
+      "href": "anchor.href",
+      "title": ".course-name, h3, h4",
+      "category": ".course-semester, .course-category, .course-info-tags",
+      "professor": "교수명 텍스트; 원형 아바타의 성씨 글자는 제외",
+      "thumbnail": "img.src 또는 background-image"
+    }
+  },
+  "example": {
+    "source": "current",
+    "title": "예시 교과목 (001)",
+    "href": "https://plato.pusan.ac.kr/course/view.php?id=12345",
+    "year": 2026,
+    "semester": "20",
+    "category": "교과과정",
+    "professor": "홍길동"
+  }
+}
+

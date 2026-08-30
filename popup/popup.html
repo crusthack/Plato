@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PLATO Classic 설정</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup">
+      <header class="popup-header">
+        <div class="brand-mark">P</div>
+        <div>
+          <h1 id="extension-name">PLATO Classic</h1>
+          <p>화면 표시 설정</p>
+        </div>
+      </header>
+
+      <section class="master-card">
+        <div class="setting-copy">
+          <strong>구 UI 적용</strong>
+          <span id="master-description">이전 PLATO 화면을 사용합니다.</span>
+        </div>
+        <label class="switch">
+          <input id="classic-enabled" type="checkbox" aria-describedby="master-description">
+          <span class="slider"></span>
+        </label>
+      </section>
+
+      <section id="detail-settings" class="detail-settings" aria-label="화면별 설정">
+        <label class="setting-row">
+          <span class="setting-copy">
+            <strong>로그인 전 화면</strong>
+            <small>메인·로그인 페이지</small>
+          </span>
+          <span class="switch switch-small">
+            <input id="login-enabled" type="checkbox">
+            <span class="slider"></span>
+          </span>
+        </label>
+
+        <label class="setting-row">
+          <span class="setting-copy">
+            <strong>로그인 후 화면</strong>
+            <small>강좌·할 일·공지</small>
+          </span>
+          <span class="switch switch-small">
+            <input id="dashboard-enabled" type="checkbox">
+            <span class="slider"></span>
+          </span>
+        </label>
+      </section>
+
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+
+      <a class="open-plato" href="https://plato.pusan.ac.kr/" target="_blank" rel="noopener noreferrer">
+        PLATO 열기
+      </a>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

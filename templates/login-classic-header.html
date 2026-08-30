@@ -1,0 +1,148 @@
+<template id="plato-classic-login-form-template">
+  <form id="plato-classic-login-form" class="mform form-login" name="login" method="post" action="https://plato.pusan.ac.kr/login/index.php" autocomplete="on">
+    <div class="form-inline form-inline-form">
+      <input type="text" id="input-username" name="username" placeholder="아이디" autocomplete="username" autocapitalize="none" spellcheck="false" aria-label="아이디" required class="required form-control mr-sm-1">
+      <input type="password" id="input-password" name="password" placeholder="비밀번호" autocomplete="current-password" aria-label="비밀번호" required class="required form-control mr-sm-1">
+      <button type="submit" name="loginbutton" value="로그인" disabled class="btn btn-login mr-sm-1">로그인</button>
+      <div class="dropdown dropdown-lang">
+        <a id="user-info-lang" href="https://plato.pusan.ac.kr/index.php?lang=ko" class="btn btn-default dropdown-toggle">
+          <img data-classic-asset="flag-ko" alt="">한국어 ‎(ko)‎
+        </a>
+      </div>
+    </div>
+  </form>
+</template>
+
+<header id="plato-classic-login-header">
+  <div class="logo-login">
+    <div class="row row-form login-container no-gutters">
+      <div class="col-12 col-md-3 col-logo">
+        <a class="site-home-link" href="https://plato.pusan.ac.kr/" title="메인" aria-label="PLATO 메인">
+          <img data-classic-asset="plato-logo" class="site-logo" alt="부산대학교 스마트 교육플랫폼 PLATO">
+        </a>
+      </div>
+      <div class="col-12 col-md-9 col-login">
+        <slot name="login-form"></slot>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-menu">
+    <div class="login-container">
+      <ul class="menu">
+        <li class="menu-item">
+          <a href="https://plato.pusan.ac.kr/local/ubion/allcourse/regular/index.php">교과과정</a>
+        </li>
+        <li class="menu-item">
+          <a href="https://plato.pusan.ac.kr/local/ubeclass/index.php">자율강좌</a>
+        </li>
+        <li class="menu-item">
+          <a href="https://plato.pusan.ac.kr/local/ubonline/index.php?cgroup=1">지정강좌</a>
+        </li>
+        <li class="menu-item">
+          <a href="https://plato.pusan.ac.kr/local/ubonline/index.php?cgroup=2">교수·학습</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="login-image">
+    <div id="carousel-image" class="carousel slide" aria-roledescription="carousel" aria-label="PLATO 주요 안내">
+      <input class="carousel-state" type="radio" name="plato-classic-carousel" id="plato-classic-slide-1" value="0" checked>
+      <input class="carousel-state" type="radio" name="plato-classic-carousel" id="plato-classic-slide-2" value="1">
+      <input class="carousel-state" type="radio" name="plato-classic-carousel" id="plato-classic-slide-3" value="2">
+      <div class="login-container">
+        <ol class="carousel-indicators" aria-label="슬라이드 선택">
+          <li data-slide-to="0"><label for="plato-classic-slide-1" aria-label="1번 슬라이드">01</label></li>
+          <li data-slide-to="1"><label for="plato-classic-slide-2" aria-label="2번 슬라이드">02</label></li>
+          <li data-slide-to="2"><label for="plato-classic-slide-3" aria-label="3번 슬라이드">03</label></li>
+        </ol>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item carousel-slide-1 item">
+          <img class="carousel-background" src="https://dev-plato.pusan.ac.kr/pluginfile.php/1/local_ubion/mainslider/4/aa7HpImrZhy8X1Bn_max.jpg" alt="">
+          <div class="rgba-bg"></div>
+          <div class="carousel-text">
+            <div class="login-container">
+              <p>부산대학교 스마트캠퍼스앱에서도 PLATO를 이용할 수 있습니다.</p>
+              <p class="carousel-subtext">(로그인 필요)</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item carousel-slide-2 item" aria-hidden="true">
+          <img class="carousel-background" src="https://dev-plato.pusan.ac.kr/pluginfile.php/1/local_ubion/mainslider/1/banner_02%20%281%29.jpg" alt="">
+          <div class="rgba-bg"></div>
+          <div class="carousel-text">
+            <div class="login-container">
+              <p>PLATO는 학습, 고등교육, 열린 지식나눔을 위한 스마트 교육플랫폼입니다.</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item carousel-slide-3 item" aria-hidden="true">
+          <img class="carousel-background" src="https://dev-plato.pusan.ac.kr/pluginfile.php/1/local_ubion/mainslider/2/%E1%84%83%E1%85%A9%E1%86%A8%E1%84%89%E1%85%AE%E1%84%85%E1%85%B5.JPG" alt="">
+          <div class="rgba-bg"></div>
+          <div class="carousel-text">
+            <div class="login-container">
+              <p>Arise PNU 같이 더 높게</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice-card">
+    <div class="login-container">
+      <div class="row row-notice">
+        <div class="col-12 col-lg-6 notice-column">
+          <h4 class="title">공지사항</h4>
+          <ul class="list" data-classic-notice-list></ul>
+        </div>
+        <div class="col-12 col-lg-6 link-column">
+          <ul class="link-list">
+            <li class="link-list-item link-list-item-notice">
+              <a href="https://plato.pusan.ac.kr/mod/ubboard/view.php?id=2624">공지사항</a>
+            </li>
+            <li class="link-list-item link-list-item-qna">
+              <a href="https://plato.pusan.ac.kr/mod/ubboard/view.php?id=634">Q&amp;A</a>
+            </li>
+            <li class="link-list-item link-list-item-faq">
+              <a href="https://plato.pusan.ac.kr/mod/ubboard/view.php?id=2184">FAQ</a>
+            </li>
+            <li class="link-list-item link-list-item-manual">
+              <a href="https://plato.pusan.ac.kr/local/ubmanual/">매뉴얼</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row row-card">
+        <div class="col-6 col-lg-20p service-column">
+          <a href="https://zoom.us/test" target="_blank" rel="noopener noreferrer" class="card-list card-list-video">
+            <div class="text">실시간 화상강의</div>
+          </a>
+        </div>
+        <div class="col-6 col-lg-20p service-column">
+          <a href="https://sconchat.sconai.com/admin/login/customer" target="_blank" rel="noopener noreferrer" class="card-list card-list-translation">
+            <div class="text">실시간 통번역</div>
+          </a>
+        </div>
+        <div class="col-6 col-lg-20p service-column">
+          <a href="https://www.kocw.net/home/index.do" target="_blank" rel="noopener noreferrer" class="card-list card-list-seri">
+            <div class="text">KOCW(Korea OpenCourseWare)</div>
+          </a>
+        </div>
+        <div class="col-6 col-lg-20p service-column">
+          <a href="https://www.kmooc.kr/view/course/institution/pnuk" target="_blank" rel="noopener noreferrer" class="card-list card-list-kmooc">
+            <div class="text">K-MOOC</div>
+          </a>
+        </div>
+        <div class="col-6 col-lg-20p service-column">
+          <a href="https://plato.pusan.ac.kr/pulleycampus.php" class="card-list card-list-ppt">
+            <div class="text">AI코스웨어</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,114 @@
+:root.plato-classic-global-active {
+  --legacy-blue: #005baa;
+  --legacy-border: #e5e5e5;
+  --legacy-canvas: #fff;
+  --legacy-side-nav-width: 268px;
+  --legacy-text: #333;
+  background: #fff !important;
+}
+
+:root.plato-classic-global-active body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: var(--legacy-canvas) !important;
+  color: var(--legacy-text) !important;
+  font-family: Arial, "Noto Sans KR", sans-serif !important;
+}
+
+#plato-classic-auth-header[hidden] {
+  display: none !important;
+}
+
+:root.plato-classic-global-active #pw-header {
+  display: none !important;
+}
+
+:root.plato-classic-global-active #pw-nav-channel {
+  display: none !important;
+}
+
+:root.plato-classic-global-active #page-wrapper,
+:root.plato-classic-global-active #page {
+  width: 100% !important;
+  max-width: none !important;
+  margin-top: 0 !important;
+  background: #fff !important;
+}
+
+:root.plato-classic-global-active #page {
+  min-height: 100vh !important;
+  padding-top: 106px !important;
+  background: var(--legacy-canvas) !important;
+}
+
+:root.plato-classic-global-active #page-content {
+  background: #fff !important;
+}
+
+:root.plato-classic-global-active #region-main-box,
+:root.plato-classic-global-active #region-main {
+  background-color: #fff !important;
+}
+
+:root.plato-classic-global-active #region-main,
+:root.plato-classic-global-active .card,
+:root.plato-classic-global-active .course-content,
+:root.plato-classic-global-active .activity-item {
+  border-color: var(--legacy-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+:root.plato-classic-global-active .btn,
+:root.plato-classic-global-active button,
+:root.plato-classic-global-active input,
+:root.plato-classic-global-active select,
+:root.plato-classic-global-active textarea {
+  border-radius: 2px !important;
+}
+
+:root.plato-classic-global-active .btn-primary {
+  border-color: var(--legacy-blue) !important;
+  background-color: var(--legacy-blue) !important;
+}
+
+:root.plato-classic-global-active #page-footer {
+  margin-top: 0 !important;
+  background: #252525 !important;
+}
+
+@media (max-width: 991.98px) {
+  :root.plato-classic-global-active #pw-nav {
+    display: none !important;
+  }
+
+  :root.plato-classic-global-active #page {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-top: 94px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  :root.plato-classic-global-active #pw-nav {
+    display: block !important;
+    top: 106px !important;
+    width: var(--legacy-side-nav-width) !important;
+    height: calc(100vh - 106px) !important;
+  }
+
+  :root.plato-classic-global-active #pw-nav-container,
+  :root.plato-classic-global-active #pw-nav-menu {
+    width: var(--legacy-side-nav-width) !important;
+    height: calc(100vh - 106px) !important;
+  }
+
+  :root.plato-classic-global-active #pw-nav-menu {
+    transform: none !important;
+  }
+
+  :root.plato-classic-global-active #page {
+    width: calc(100% - var(--legacy-side-nav-width)) !important;
+    margin-left: var(--legacy-side-nav-width) !important;
+  }
+}

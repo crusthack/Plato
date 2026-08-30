@@ -1,0 +1,31 @@
+{
+  "fixtureType": "sanitized-structure",
+  "request": {
+    "method": "GET",
+    "path": "/local/ubion/user/index.php",
+    "query": { "year": "2025", "semester": "20" }
+  },
+  "response": {
+    "contentType": "text/html",
+    "listSelectors": [
+      ".table-coursemos tbody.my-course-lists tr",
+      "a.coursefullname[href*='/course/view.php?id=']",
+      "a[href*='/course/view.php?id=']"
+    ],
+    "fields": {
+      "href": "course anchor href",
+      "title": ".coursefullname 또는 course anchor text",
+      "yearSemester": "행 또는 주변 학기 selector",
+      "professor": "교수명 텍스트"
+    }
+  },
+  "example": {
+    "source": "legacy",
+    "title": "과년도 예시 교과목",
+    "href": "https://dev-plato.pusan.ac.kr/course/view.php?id=54321",
+    "year": 2025,
+    "semester": "20",
+    "professor": "홍길동"
+  }
+}
+

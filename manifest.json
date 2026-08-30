@@ -1,0 +1,80 @@
+{
+  "manifest_version": 3,
+  "name": "PLATO Classic",
+  "version": "1.0.0",
+  "description": "부산대학교 PLATO 메인 및 대시보드를 이전 PLATO 구조로 복원합니다.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://dev-plato.pusan.ac.kr/*"],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "action": {
+    "default_title": "PLATO Classic 설정",
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://plato.pusan.ac.kr/*"],
+      "css": ["styles/preload.css"],
+      "js": ["src/preload.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://plato.pusan.ac.kr/",
+        "https://plato.pusan.ac.kr/?*",
+        "https://plato.pusan.ac.kr/index.php*"
+      ],
+      "css": ["styles/login.css"],
+      "js": ["src/login.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://plato.pusan.ac.kr/",
+        "https://plato.pusan.ac.kr/?*",
+        "https://plato.pusan.ac.kr/index.php*",
+        "https://plato.pusan.ac.kr/my*"
+      ],
+      "css": ["styles/dashboard.css"],
+      "js": ["src/dashboard.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://plato.pusan.ac.kr/local/ubion/allcourse/regular/*"],
+      "css": ["styles/authenticated.css"],
+      "js": ["src/authenticated.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://plato.pusan.ac.kr/course/view.php*"],
+      "css": ["styles/course.css"],
+      "js": ["src/course.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://plato.pusan.ac.kr/*"],
+      "css": ["styles/auth-shell.css", "styles/global-shell.css", "styles/default-avatars.css"],
+      "js": ["src/default-avatars.js", "src/global-shell.js", "src/user-menu.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://dev-plato.pusan.ac.kr/local/ubion/user/*"],
+      "js": ["src/legacy-term-bridge.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "styles/login.css",
+        "styles/dashboard.css",
+        "styles/auth-shell.css",
+        "templates/login-classic-header.html",
+        "assets/icons/*.png",
+        "assets/icons/*.svg"
+      ],
+      "matches": ["https://plato.pusan.ac.kr/*"]
+    }
+  ]
+}

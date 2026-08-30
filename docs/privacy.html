@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PLATO Classic 브라우저 확장 프로그램 개인정보처리방침">
+  <title>PLATO Classic 개인정보처리방침</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --primary: #0667ad;
+      --primary-dark: #034f87;
+      --text: #20252b;
+      --muted: #606b76;
+      --line: #dce2e8;
+      --surface: #f5f8fa;
+      --notice: #edf6fc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--surface);
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+
+    header {
+      border-top: 4px solid var(--primary);
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    header .inner,
+    main,
+    footer {
+      width: min(920px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header .inner {
+      padding: 34px 0 30px;
+    }
+
+    h1,
+    h2 {
+      line-height: 1.35;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: var(--primary-dark);
+      font-size: clamp(28px, 5vw, 40px);
+      letter-spacing: -0.035em;
+    }
+
+    h2 {
+      margin: 42px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+      font-size: 21px;
+      letter-spacing: -0.02em;
+    }
+
+    p,
+    ul {
+      margin: 12px 0;
+    }
+
+    ul {
+      padding-left: 24px;
+    }
+
+    li + li {
+      margin-top: 6px;
+    }
+
+    a {
+      color: var(--primary);
+      text-underline-offset: 3px;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #edf1f4;
+      font-family: Consolas, "SFMono-Regular", monospace;
+      font-size: 0.92em;
+      overflow-wrap: anywhere;
+    }
+
+    main {
+      margin-top: 28px;
+      margin-bottom: 28px;
+      padding: clamp(24px, 5vw, 52px);
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .meta {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .summary {
+      margin: 0 0 34px;
+      padding: 20px 22px;
+      border-left: 4px solid var(--primary);
+      background: var(--notice);
+    }
+
+    .data-table {
+      width: 100%;
+      margin: 18px 0;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      width: 28%;
+      background: var(--surface);
+    }
+
+    footer {
+      padding: 0 0 36px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      header .inner,
+      main,
+      footer {
+        width: min(100% - 24px, 920px);
+      }
+
+      main {
+        padding: 22px 18px;
+      }
+
+      .data-table,
+      .data-table tbody,
+      .data-table tr,
+      .data-table th,
+      .data-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .data-table tr + tr {
+        margin-top: 14px;
+      }
+
+      .data-table td {
+        border-top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <h1>PLATO Classic 개인정보처리방침</h1>
+      <p class="meta">시행일: 2026년 8월 31일</p>
+    </div>
+  </header>
+
+  <main>
+    <p class="summary">
+      PLATO Classic은 부산대학교 PLATO 화면을 이전 PLATO 구조에 가깝게 재구성하는
+      비공식 브라우저 확장 프로그램입니다. 확장 프로그램이 처리하는 정보는 요청한
+      기능을 브라우저 안에서 제공하는 데에만 사용되며, 개발자가 운영하는 서버로
+      전송하거나 판매하지 않습니다.
+    </p>
+
+    <h2>1. 적용 범위</h2>
+    <p>
+      이 방침은 PLATO Classic 확장 프로그램이
+      <code>https://plato.pusan.ac.kr/</code> 및
+      <code>https://dev-plato.pusan.ac.kr/</code>에서 처리하는 정보에 적용됩니다.
+      부산대학교와 각 PLATO 사이트가 자체적으로 처리하는 정보에는 해당 기관의
+      개인정보처리방침이 별도로 적용됩니다.
+    </p>
+
+    <h2>2. 처리하는 정보와 이용 목적</h2>
+    <table class="data-table">
+      <tbody>
+        <tr>
+          <th scope="row">화면 및 강좌 정보</th>
+          <td>강좌명, 교수명, 학기, 강좌 유형, 공지사항, 예정 일정, 게시판과 학습활동 정보를 읽어 Classic UI로 다시 표시합니다.</td>
+        </tr>
+        <tr>
+          <th scope="row">프로필 표시 정보</th>
+          <td>현재 페이지에 표시된 사용자 이름과 프로필 이미지, 학번 또는 학과·소속 정보 중 확인 가능한 항목을 사용자 메뉴에 표시합니다.</td>
+        </tr>
+        <tr>
+          <th scope="row">알림 정보</th>
+          <td>최근 알림의 제목, 출처, 날짜와 링크를 사용자 패널에 표시합니다. 알림 삭제 또는 전체 삭제 요청은 수행하지 않습니다.</td>
+        </tr>
+        <tr>
+          <th scope="row">환경설정</th>
+          <td>Classic UI 전체 사용 여부, 로그인 화면 적용 여부, 로그인 후 화면 적용 여부를 저장합니다.</td>
+        </tr>
+        <tr>
+          <th scope="row">과거 강좌 정보</th>
+          <td>사용자가 과거 강좌 조회를 요청한 경우 구 PLATO에서 선택한 연도와 학기의 강좌명 및 강의실 링크를 확인하여 현재 화면에 표시합니다.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>3. 로그인 정보 처리</h2>
+    <p>
+      Classic 로그인 화면에서 사용자가 입력한 아이디와 비밀번호는 부산대학교 공식
+      로그인 주소인 <code>https://plato.pusan.ac.kr/login/index.php</code>로 직접
+      제출됩니다. 확장 프로그램은 아이디, 비밀번호, 쿠키 문자열 또는 세션 키를
+      별도로 수집하거나 확장 프로그램 저장소에 보관하지 않습니다.
+    </p>
+
+    <h2>4. 알림 조회 요청</h2>
+    <p>
+      사용자 메뉴의 알림 탭은 페이지에 이미 표시된 알림을 우선 사용합니다. 알림 탭에
+      처음 진입하거나 새로고침을 실행하면 PLATO가 제공하는
+      <code>/local/ubnotification/action.php</code>에 알림 목록을 읽기 위한 요청을
+      보낼 수 있습니다. 해당 API가 목록 조회에 POST 방식을 사용하므로 현재 PLATO의
+      로그인 쿠키와 세션 키가 같은 PLATO 출처로 전송됩니다. 이 요청은 알림을
+      작성·수정·삭제하지 않습니다.
+    </p>
+
+    <h2>5. 저장 위치와 보유 기간</h2>
+    <ul>
+      <li><code>chrome.storage.local</code>에는 사용자가 선택한 UI 설정만 저장하며, 설정을 초기화하거나 확장 프로그램을 삭제할 때까지 유지될 수 있습니다.</li>
+      <li><code>chrome.storage.session</code>에는 강좌 이동 목록을 위한 강좌 ID, 강좌명, 교수명, 학기와 링크를 임시 저장하며 브라우저 세션이 끝나면 삭제됩니다.</li>
+      <li>구 PLATO의 공개 메인 HTML은 중복 요청을 줄이기 위해 서비스 워커 메모리에 최대 5분간 보관될 수 있습니다.</li>
+      <li>알림 내용, 프로필 보조 정보, 비밀번호, 쿠키 및 세션 키는 확장 프로그램 저장소에 기록하지 않습니다.</li>
+    </ul>
+
+    <h2>6. 외부 제공, 판매 및 광고</h2>
+    <p>PLATO Classic은 다음 행위를 하지 않습니다.</p>
+    <ul>
+      <li>처리한 정보를 개발자가 운영하는 서버로 전송</li>
+      <li>사용자 정보를 판매하거나 광고 목적으로 이용</li>
+      <li>분석, 원격 측정, 행동 추적 또는 광고 프로파일 작성</li>
+      <li>게시글·댓글 작성, 메시지 발송 또는 파일 업로드</li>
+      <li>수강 신청·취소, 알림 삭제 또는 사용자 설정 변경</li>
+    </ul>
+    <p>
+      사용자가 화면의 외부 서비스 링크를 직접 선택하면 해당 서비스로 이동할 수
+      있지만, 확장 프로그램은 PLATO에서 읽은 정보를 그 외부 서비스로 전달하지
+      않습니다.
+    </p>
+
+    <h2>7. 권한 사용</h2>
+    <ul>
+      <li><strong>storage:</strong> UI 설정을 유지하고 현재 브라우저 세션에서 강좌 이동 목록을 제공하기 위해 사용합니다.</li>
+      <li><strong>plato.pusan.ac.kr 접근:</strong> PLATO 페이지의 DOM과 같은 출처의 강좌·공지·알림 정보를 Classic UI로 표시하기 위해 사용합니다.</li>
+      <li><strong>dev-plato.pusan.ac.kr 접근:</strong> 사용자가 요청한 공개 콘텐츠 및 과거 강좌 조회 기능을 제공하기 위해 사용합니다.</li>
+    </ul>
+
+    <h2>8. 보안</h2>
+    <p>
+      네트워크 요청은 지정된 PLATO HTTPS 도메인으로 제한합니다. 실행되는 JavaScript,
+      CSS, HTML 및 SVG는 확장 프로그램 패키지에 포함되어 있으며 원격 JavaScript나
+      WebAssembly를 실행하지 않습니다. 서버에서 받은 HTML은 필요한 텍스트와 안전한
+      링크를 추출하는 데이터로만 사용합니다.
+    </p>
+
+    <h2>9. 사용자의 선택과 데이터 삭제</h2>
+    <p>
+      사용자는 확장 프로그램 팝업에서 Classic UI 적용 범위를 끄거나 Chrome의 확장
+      프로그램 관리 화면에서 PLATO Classic을 삭제할 수 있습니다. 확장 프로그램을
+      삭제하면 Chrome이 관리하던 로컬 설정도 삭제됩니다. 개발자 서버에 별도로
+      보관되는 사용자 정보는 없습니다.
+    </p>
+
+    <h2>10. 방침 변경</h2>
+    <p>
+      기능 또는 데이터 처리 방식이 변경되면 이 페이지의 내용과 시행일을 갱신합니다.
+      중요한 변경이 있는 경우 Chrome 웹 스토어 등록정보 또는 확장 프로그램의 적절한
+      화면을 통해 알릴 수 있습니다.
+    </p>
+
+    <h2>11. 문의</h2>
+    <p>
+      개인정보 및 확장 프로그램에 관한 문의는 Chrome 웹 스토어의 PLATO Classic
+      등록정보에 표시된 개발자 지원 이메일 또는 개발자 문의 기능을 이용해 주십시오.
+    </p>
+
+    <h2>12. 비공식 확장 프로그램 안내</h2>
+    <p>
+      PLATO Classic은 부산대학교 또는 PLATO 운영 기관의 공식 확장 프로그램이
+      아닙니다. 부산대학교 및 PLATO의 명칭과 관련 표시는 대상 서비스를 식별하기
+      위한 목적으로만 사용됩니다.
+    </p>
+  </main>
+
+  <footer>
+    <p>PLATO Classic · 개인정보처리방침</p>
+  </footer>
+</body>
+</html>

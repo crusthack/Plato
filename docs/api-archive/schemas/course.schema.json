@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/plato-classic/course.schema.json",
+  "title": "Normalized PLATO course",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source", "title", "href", "year", "semester"],
+  "properties": {
+    "source": {
+      "enum": ["current", "legacy"]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "href": {
+      "type": "string",
+      "pattern": "^https://(?:dev-)?plato\\.pusan\\.ac\\.kr/course/view\\.php\\?"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 2014,
+      "maximum": 2100
+    },
+    "semester": {
+      "enum": ["10", "11", "12", "20", "21", "22"]
+    },
+    "category": {
+      "type": "string"
+    },
+    "professor": {
+      "type": "string",
+      "description": "이름 텍스트만 저장한다. 신규 UI의 성씨 아바타 문자는 결합하지 않는다."
+    },
+    "thumbnail": {
+      "type": "string"
+    }
+  }
+}
+

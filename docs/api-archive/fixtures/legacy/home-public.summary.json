@@ -1,0 +1,27 @@
+{
+  "fixtureType": "sanitized-structure",
+  "request": { "method": "GET", "path": "/" },
+  "response": {
+    "contentType": "text/html",
+    "observedLinks": [
+      "/local/ubion/user/index.php",
+      "/local/ubeclass/",
+      "/local/ubonline/",
+      "/local/ubteaching/",
+      "/local/ubmanual/",
+      "/local/oer/search.php",
+      "/realtime.php"
+    ],
+    "courseSectionSelectors": [
+      ".course-latest",
+      ".swiper-slide-course a[href]",
+      ".course-name",
+      ".course-category"
+    ],
+    "contentSearchForm": {
+      "method": "GET",
+      "action": "/local/oer/search.php",
+      "query": ["keyword"]
+    }
+  }
+}

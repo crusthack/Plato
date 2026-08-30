@@ -1,0 +1,12 @@
+html.plato-classic-preparing {
+  background: #fff !important;
+}
+
+html.plato-classic-preparing::before {
+  position: fixed;
+  z-index: 2147483647;
+  inset: 0;
+  background: #fff;
+  content: "";
+  pointer-events: none;
+}

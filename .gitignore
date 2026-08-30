@@ -1,0 +1,23 @@
+# Local-only captures and temporary data
+local/
+.env
+.env.*
+
+# Extension packaging and signing artifacts
+*.zip
+*.crx
+*.pem
+*.key
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dependency and test output
+node_modules/
+coverage/
+dist/
+
