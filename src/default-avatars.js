@@ -3,6 +3,9 @@
 
   if (document.body?.classList.contains("notloggedin")) return;
 
+  const ACTIVE_CLASS = "plato-classic-avatar-active";
+  const start = () => {
+
   const avatarSelector = ".csms-avata-picture, .userinitials";
   const defaultAvatarUrl = chrome.runtime.getURL("assets/icons/default-user.svg");
 
@@ -61,4 +64,11 @@
       refreshFrame = 0;
     });
   }).observe(document.body, { childList: true, subtree: true });
+  };
+
+  chrome.storage.local.get({ classicEnabled: true, dashboardEnabled: true }, (settings) => {
+    const enabled = settings.classicEnabled !== false && settings.dashboardEnabled !== false;
+    document.documentElement.classList.toggle(ACTIVE_CLASS, enabled);
+    if (enabled) start();
+  });
 })();

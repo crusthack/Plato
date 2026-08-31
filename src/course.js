@@ -3,6 +3,9 @@
 
   if (!document.body?.matches("#page-course-view-ubsweeks")) return;
 
+  const ACTIVE_CLASS = "plato-classic-course-active";
+  const start = () => {
+
   const normalize = (value) => String(value || "")
     .replace(/\s+/g, " ")
     .trim()
@@ -678,4 +681,11 @@
     installCourseSwitcher();
     installSidebarScrollGuard();
   }, 800);
+  };
+
+  chrome.storage.local.get({ classicEnabled: true, dashboardEnabled: true }, (settings) => {
+    const enabled = settings.classicEnabled !== false && settings.dashboardEnabled !== false;
+    document.documentElement.classList.toggle(ACTIVE_CLASS, enabled);
+    if (enabled) start();
+  });
 })();

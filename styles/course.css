@@ -1,29 +1,29 @@
-body#page-course-view-ubsweeks {
+html.plato-classic-course-active body#page-course-view-ubsweeks {
   --classic-course-blue: #1769aa;
   --classic-course-border: #d9dee2;
   --classic-course-week: #e8f3ef;
   background: #fff !important;
 }
 
-body#page-course-view-ubsweeks #page,
-body#page-course-view-ubsweeks #page-wrapper,
-body#page-course-view-ubsweeks #page-content,
-body#page-course-view-ubsweeks #region-main-box,
-body#page-course-view-ubsweeks #region-main {
+html.plato-classic-course-active body#page-course-view-ubsweeks #page,
+html.plato-classic-course-active body#page-course-view-ubsweeks #page-wrapper,
+html.plato-classic-course-active body#page-course-view-ubsweeks #page-content,
+html.plato-classic-course-active body#page-course-view-ubsweeks #region-main-box,
+html.plato-classic-course-active body#page-course-view-ubsweeks #region-main {
   background: #fff !important;
 }
 
-body#page-course-view-ubsweeks #page-content {
+html.plato-classic-course-active body#page-course-view-ubsweeks #page-content {
   box-sizing: border-box !important;
   width: 100% !important;
   max-width: none !important;
   padding: 0 0 52px !important;
 }
 
-body#page-course-view-ubsweeks #region-main-box,
-body#page-course-view-ubsweeks #region-main,
-body#page-course-view-ubsweeks #region-main > [role="main"],
-body#page-course-view-ubsweeks .course-content {
+html.plato-classic-course-active body#page-course-view-ubsweeks #region-main-box,
+html.plato-classic-course-active body#page-course-view-ubsweeks #region-main,
+html.plato-classic-course-active body#page-course-view-ubsweeks #region-main > [role="main"],
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-content {
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
@@ -33,18 +33,18 @@ body#page-course-view-ubsweeks .course-content {
   box-shadow: none !important;
 }
 
-body#page-course-view-ubsweeks .secondary-navigation {
+html.plato-classic-course-active body#page-course-view-ubsweeks .secondary-navigation {
   margin: 0 !important;
   padding: 0 18px !important;
   border-bottom: 1px solid var(--classic-course-border) !important;
   background: #fff !important;
 }
 
-body#page-course-view-ubsweeks .coursemos-course-dashboard {
+html.plato-classic-course-active body#page-course-view-ubsweeks .coursemos-course-dashboard {
   margin: 0 !important;
 }
 
-body#page-course-view-ubsweeks .dashboard-header {
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header {
   display: flex !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -65,7 +65,7 @@ body#page-course-view-ubsweeks .dashboard-header {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .dashboard-header-title {
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header-title {
   display: block !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -82,8 +82,8 @@ body#page-course-view-ubsweeks .dashboard-header-title {
   white-space: normal !important;
 }
 
-body#page-course-view-ubsweeks .dashboard-header-honor,
-body#page-course-view-ubsweeks .dashboard-header .honor-info {
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header-honor,
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header .honor-info {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
@@ -91,19 +91,44 @@ body#page-course-view-ubsweeks .dashboard-header .honor-info {
   font-size: 13px !important;
 }
 
-body#page-course-view-ubsweeks .dashboard-header .csms-avata {
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header .csms-avata {
   border: 1px solid rgb(255 255 255 / 58%) !important;
   background: #fff !important;
   color: #333 !important;
 }
 
-body#page-course-view-ubsweeks .dashboard-header .btn-message-send,
-body#page-course-view-ubsweeks .dashboard-header .btn-message-send .svg-color {
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header .honor-info > .btn-message-send,
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header .honor-info > .btn-message-send .svg-color {
   color: #fff !important;
   fill: #fff !important;
 }
 
-body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host {
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header .dropdown-menu .btn-message-send,
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header .dropdown-menu .dropdown-item-fullname,
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header .dropdown-menu .text-truncate {
+  color: #2f363d !important;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header .dropdown-menu .btn-message-send .svg-color {
+  color: #899199 !important;
+  fill: #899199 !important;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header .dropdown-menu .btn-message-send:hover,
+html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header .dropdown-menu .btn-message-send:focus-visible {
+  background: #f2f6f9 !important;
+  color: #005baa !important;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .modal-backdrop.show {
+  z-index: 1290 !important;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .modal.show {
+  z-index: 1300 !important;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host {
   position: relative !important;
   z-index: 30 !important;
   display: flex !important;
@@ -127,29 +152,29 @@ body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host 
   transition: border-color 150ms ease, background-color 150ms ease !important;
 }
 
-body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host:hover,
-body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host:focus-within {
+html.plato-classic-course-active body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host:hover,
+html.plato-classic-course-active body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host:focus-within {
   border-color: var(--classic-course-blue) !important;
   background: #f7fafc !important;
 }
 
-body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host:has(
+html.plato-classic-course-active body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host:has(
   .plato-classic-course-switcher-button[aria-expanded="true"]
 ) {
   border-radius: 0 !important;
 }
 
-body#page-course-view-ubsweeks #pw-nav-menu {
+html.plato-classic-course-active body#page-course-view-ubsweeks #pw-nav-menu {
   overflow: visible !important;
 }
 
-body#page-course-view-ubsweeks #pw-nav-menu .menu-container {
+html.plato-classic-course-active body#page-course-view-ubsweeks #pw-nav-menu .menu-container {
   overflow-anchor: none !important;
   overscroll-behavior: contain !important;
   scroll-behavior: auto !important;
 }
 
-body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host .coursename-dropdown {
+html.plato-classic-course-active body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host .coursename-dropdown {
   display: flex !important;
   height: auto !important;
   min-height: 56px !important;
@@ -160,7 +185,7 @@ body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host 
   flex: 1 1 auto !important;
 }
 
-body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host .coursename-prof {
+html.plato-classic-course-active body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host .coursename-prof {
   display: flex !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -178,18 +203,18 @@ body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host 
   text-decoration: none !important;
 }
 
-body#page-course-view-ubsweeks #pw-nav-menu
+html.plato-classic-course-active body#page-course-view-ubsweeks #pw-nav-menu
   .plato-classic-course-switcher-host .coursename-prof.is-current-course {
   cursor: pointer !important;
   pointer-events: auto !important;
 }
 
-body#page-course-view-ubsweeks #pw-nav-menu
+html.plato-classic-course-active body#page-course-view-ubsweeks #pw-nav-menu
   .plato-classic-course-switcher-host .coursename-prof > .csms-avata {
   display: none !important;
 }
 
-body#page-course-view-ubsweeks .plato-classic-current-course-text {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-current-course-text {
   display: flex !important;
   min-width: 0 !important;
   flex: 1 1 auto !important;
@@ -198,7 +223,7 @@ body#page-course-view-ubsweeks .plato-classic-current-course-text {
   gap: 1px !important;
 }
 
-body#page-course-view-ubsweeks .plato-classic-current-course-text .coursename {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-current-course-text .coursename {
   display: block !important;
   max-width: 100% !important;
   color: #25333d !important;
@@ -212,7 +237,7 @@ body#page-course-view-ubsweeks .plato-classic-current-course-text .coursename {
   white-space: normal !important;
 }
 
-body#page-course-view-ubsweeks .plato-classic-current-professor {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-current-professor {
   display: block !important;
   max-width: 100% !important;
   color: #6f7c85 !important;
@@ -225,14 +250,14 @@ body#page-course-view-ubsweeks .plato-classic-current-professor {
   word-break: keep-all !important;
 }
 
-body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host .coursename-prof:hover,
-body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host .coursename-prof:focus-visible {
+html.plato-classic-course-active body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host .coursename-prof:hover,
+html.plato-classic-course-active body#page-course-view-ubsweeks #pw-nav-menu .plato-classic-course-switcher-host .coursename-prof:focus-visible {
   background: transparent !important;
   color: var(--classic-course-blue) !important;
   outline: 0 !important;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-button {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-button {
   display: flex;
   width: 36px;
   min-width: 36px;
@@ -249,18 +274,18 @@ body#page-course-view-ubsweeks .plato-classic-course-switcher-button {
   box-shadow: none;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-button:hover,
-body#page-course-view-ubsweeks .plato-classic-course-switcher-button:focus-visible,
-body#page-course-view-ubsweeks .plato-classic-course-switcher-button[aria-expanded="true"] {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-button:hover,
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-button:focus-visible,
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-button[aria-expanded="true"] {
   background: transparent;
   color: var(--classic-course-blue);
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-button:focus-visible {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-button:focus-visible {
   outline: 0;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-button svg {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-button svg {
   width: 18px;
   height: 18px;
   fill: none;
@@ -271,7 +296,7 @@ body#page-course-view-ubsweeks .plato-classic-course-switcher-button svg {
   transition: color 150ms ease;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-menu {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-menu {
   position: absolute;
   z-index: 1200;
   top: calc(100% - 1px);
@@ -289,11 +314,11 @@ body#page-course-view-ubsweeks .plato-classic-course-switcher-menu {
   overscroll-behavior: contain;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-menu[hidden] {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-menu[hidden] {
   display: none !important;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-heading {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-heading {
   padding: 10px 12px 9px;
   border-bottom: 1px solid #e3e6e8;
   background: #f6f8fa;
@@ -302,7 +327,7 @@ body#page-course-view-ubsweeks .plato-classic-course-switcher-heading {
   font-weight: 700;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-list {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-list {
   max-height: min(350px, calc(100vh - 210px));
   margin: 0;
   padding: 5px 0;
@@ -313,12 +338,12 @@ body#page-course-view-ubsweeks .plato-classic-course-switcher-list {
   list-style: none;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-list li {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-list li {
   margin: 0;
   padding: 0;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-link {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-link {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -329,36 +354,36 @@ body#page-course-view-ubsweeks .plato-classic-course-switcher-link {
   text-decoration: none !important;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-link:hover,
-body#page-course-view-ubsweeks .plato-classic-course-switcher-link:focus-visible {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-link:hover,
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-link:focus-visible {
   border-left-color: var(--classic-course-blue);
   background: #f2f6f9;
   color: var(--classic-course-blue) !important;
   outline: none;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-link strong,
-body#page-course-view-ubsweeks .plato-classic-course-switcher-link small {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-link strong,
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-link small {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-link strong {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-link strong {
   font-size: 13px;
   font-weight: 600;
   line-height: 1.45;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-link small {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-link small {
   margin-top: 2px;
   color: #7b858d;
   font-size: 11px;
   line-height: 1.4;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-empty {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-empty {
   padding: 18px 13px !important;
   color: #7b858d;
   font-size: 12px;
@@ -366,7 +391,7 @@ body#page-course-view-ubsweeks .plato-classic-course-switcher-empty {
   text-align: center;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-all {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-all {
   display: block;
   margin: 8px 9px 9px;
   padding: 9px 12px;
@@ -380,14 +405,14 @@ body#page-course-view-ubsweeks .plato-classic-course-switcher-all {
   text-decoration: none !important;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-switcher-all:hover,
-body#page-course-view-ubsweeks .plato-classic-course-switcher-all:focus-visible {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-all:hover,
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-switcher-all:focus-visible {
   background: #eef5fa;
   border-color: var(--classic-course-blue);
   text-decoration: none !important;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-overview {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-overview {
   box-sizing: border-box;
   margin: 16px 0 14px;
   padding: 19px 22px 20px;
@@ -395,7 +420,7 @@ body#page-course-view-ubsweeks .plato-classic-course-overview {
   background: #fff;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-overview h2 {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-overview h2 {
   margin: 0;
   padding: 0 0 15px;
   border-bottom: 1px solid #e7eaec;
@@ -405,7 +430,7 @@ body#page-course-view-ubsweeks .plato-classic-course-overview h2 {
   line-height: 1.4;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcuts {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcuts {
   display: flex;
   margin: 0;
   padding: 17px 8px 0;
@@ -415,12 +440,12 @@ body#page-course-view-ubsweeks .plato-classic-course-shortcuts {
   list-style: none;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcut {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut {
   margin: 0;
   padding: 0;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcut-link {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut-link {
   display: grid;
   width: 92px;
   justify-items: center;
@@ -429,7 +454,7 @@ body#page-course-view-ubsweeks .plato-classic-course-shortcut-link {
   text-decoration: none !important;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcut-icon {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut-icon {
   display: flex;
   width: 50px;
   height: 50px;
@@ -442,23 +467,23 @@ body#page-course-view-ubsweeks .plato-classic-course-shortcut-icon {
   transition: transform 150ms ease, box-shadow 150ms ease;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcut.is-resources .plato-classic-course-shortcut-icon {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut.is-resources .plato-classic-course-shortcut-icon {
   background: #ef963e;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcut.is-qna .plato-classic-course-shortcut-icon {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut.is-qna .plato-classic-course-shortcut-icon {
   background: #397fba;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcut.is-board .plato-classic-course-shortcut-icon {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut.is-board .plato-classic-course-shortcut-icon {
   background: #607d8b;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcut.is-attendance .plato-classic-course-shortcut-icon {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut.is-attendance .plato-classic-course-shortcut-icon {
   background: #2a9b83;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcut-icon svg {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut-icon svg {
   width: 25px;
   height: 25px;
   fill: none;
@@ -468,19 +493,19 @@ body#page-course-view-ubsweeks .plato-classic-course-shortcut-icon svg {
   stroke-linejoin: round;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcut-link:hover .plato-classic-course-shortcut-icon,
-body#page-course-view-ubsweeks .plato-classic-course-shortcut-link:focus-visible .plato-classic-course-shortcut-icon {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut-link:hover .plato-classic-course-shortcut-icon,
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut-link:focus-visible .plato-classic-course-shortcut-icon {
   transform: translateY(-2px);
   box-shadow: 0 5px 12px rgb(0 0 0 / 16%);
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcut-link:focus-visible {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut-link:focus-visible {
   border-radius: 4px;
   outline: 2px solid var(--classic-course-blue);
   outline-offset: 4px;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcut-label {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut-label {
   display: block;
   max-width: 100%;
   color: #303438;
@@ -491,12 +516,12 @@ body#page-course-view-ubsweeks .plato-classic-course-shortcut-label {
   word-break: keep-all;
 }
 
-body#page-course-view-ubsweeks .plato-classic-course-shortcut-link.is-unavailable {
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut-link.is-unavailable {
   cursor: default;
   opacity: 0.45;
 }
 
-body#page-course-view-ubsweeks .course-format-container {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-format-container {
   position: relative !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -506,7 +531,7 @@ body#page-course-view-ubsweeks .course-format-container {
   background: linear-gradient(to bottom, var(--classic-course-week) 0 52px, #fff 52px) !important;
 }
 
-body#page-course-view-ubsweeks .course-format-container::before {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-format-container::before {
   position: absolute;
   top: 15px;
   left: 25px;
@@ -517,7 +542,7 @@ body#page-course-view-ubsweeks .course-format-container::before {
   line-height: 1.4;
 }
 
-body#page-course-view-ubsweeks .activity-filter.activity-filter-multiple {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-filter.activity-filter-multiple {
   position: absolute !important;
   z-index: 2 !important;
   top: 9px !important;
@@ -528,7 +553,7 @@ body#page-course-view-ubsweeks .activity-filter.activity-filter-multiple {
   gap: 7px !important;
 }
 
-body#page-course-view-ubsweeks .activity-filter .btn-csms-filter {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-filter .btn-csms-filter {
   min-height: 32px !important;
   border: 1px solid #d8dde1 !important;
   border-radius: 2px !important;
@@ -536,7 +561,7 @@ body#page-course-view-ubsweeks .activity-filter .btn-csms-filter {
   box-shadow: none !important;
 }
 
-body#page-course-view-ubsweeks .ubsweeks.weeks.ubformat {
+html.plato-classic-course-active body#page-course-view-ubsweeks .ubsweeks.weeks.ubformat {
   display: block !important;
   width: 100% !important;
   margin: 0 !important;
@@ -546,13 +571,13 @@ body#page-course-view-ubsweeks .ubsweeks.weeks.ubformat {
   list-style: none !important;
 }
 
-body#page-course-view-ubsweeks #section-0:not(:has(.activity)) {
+html.plato-classic-course-active body#page-course-view-ubsweeks #section-0:not(:has(.activity)) {
   display: none !important;
 }
 
-body#page-course-view-ubsweeks .course-section,
-body#page-course-view-ubsweeks .course-section > .section-item,
-body#page-course-view-ubsweeks .course-section-content {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section,
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section > .section-item,
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-content {
   display: block !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -568,15 +593,15 @@ body#page-course-view-ubsweeks .course-section-content {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .course-section.is-classic-empty-week {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section.is-classic-empty-week {
   display: none !important;
 }
 
-body#page-course-view-ubsweeks .course-section + .course-section {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section + .course-section {
   border-top: 1px solid var(--classic-course-border) !important;
 }
 
-body#page-course-view-ubsweeks .course-section-header {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-header {
   display: flex !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -593,7 +618,7 @@ body#page-course-view-ubsweeks .course-section-header {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .sectionname-container {
+html.plato-classic-course-active body#page-course-view-ubsweeks .sectionname-container {
   display: flex !important;
   position: static !important;
   width: auto !important;
@@ -609,7 +634,7 @@ body#page-course-view-ubsweeks .sectionname-container {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .course-section-header .sectionname {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-header .sectionname {
   margin: 0 !important;
   color: var(--classic-course-blue) !important;
   font-size: 16px !important;
@@ -618,7 +643,7 @@ body#page-course-view-ubsweeks .course-section-header .sectionname {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .course-section-header .section-period {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-header .section-period {
   display: flex !important;
   position: static !important;
   inset: auto !important;
@@ -634,12 +659,12 @@ body#page-course-view-ubsweeks .course-section-header .section-period {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .course-section-header .section-period .line,
-body#page-course-view-ubsweeks .course-section-header .section-period-text svg {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-header .section-period .line,
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-header .section-period-text svg {
   display: none !important;
 }
 
-body#page-course-view-ubsweeks .course-section-header .section-period-text {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-header .section-period-text {
   display: block !important;
   position: static !important;
   width: auto !important;
@@ -658,14 +683,14 @@ body#page-course-view-ubsweeks .course-section-header .section-period-text {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .course-section-content {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-content {
   height: auto !important;
   min-height: 0 !important;
   padding: 7px 30px 30px !important;
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .course-section-content > ul.section {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-content > ul.section {
   display: block !important;
   width: 100% !important;
   max-width: none !important;
@@ -677,11 +702,11 @@ body#page-course-view-ubsweeks .course-section-content > ul.section {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .course-section-content > ul.section:not(:has(.activity)) {
+html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-content > ul.section:not(:has(.activity)) {
   display: none !important;
 }
 
-body#page-course-view-ubsweeks .activity.activity-wrapper {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity.activity-wrapper {
   display: block !important;
   width: 100% !important;
   max-width: none !important;
@@ -695,12 +720,12 @@ body#page-course-view-ubsweeks .activity.activity-wrapper {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .activity.activity-wrapper + .activity.activity-wrapper {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity.activity-wrapper + .activity.activity-wrapper {
   border-top: 0 !important;
 }
 
-body#page-course-view-ubsweeks .activity-item,
-body#page-course-view-ubsweeks .activity-flex {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-item,
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-flex {
   display: block !important;
   width: 100% !important;
   max-width: none !important;
@@ -716,7 +741,7 @@ body#page-course-view-ubsweeks .activity-flex {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .activity-container {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-container {
   display: flex !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -737,18 +762,18 @@ body#page-course-view-ubsweeks .activity-container {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .activity-container:hover,
-body#page-course-view-ubsweeks .activity-container:focus-visible {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-container:hover,
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-container:focus-visible {
   background: #f7f9fa !important;
   color: var(--classic-course-blue) !important;
 }
 
-body#page-course-view-ubsweeks .activity-container:focus-visible {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-container:focus-visible {
   outline: 2px solid var(--classic-course-blue) !important;
   outline-offset: -2px !important;
 }
 
-body#page-course-view-ubsweeks .activity-icon-area {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-icon-area {
   display: flex !important;
   width: 28px !important;
   min-width: 28px !important;
@@ -758,8 +783,8 @@ body#page-course-view-ubsweeks .activity-icon-area {
   justify-content: center !important;
 }
 
-body#page-course-view-ubsweeks .activity-icon,
-body#page-course-view-ubsweeks .activityiconcontainer {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-icon,
+html.plato-classic-course-active body#page-course-view-ubsweeks .activityiconcontainer {
   display: flex !important;
   box-sizing: border-box !important;
   width: 26px !important;
@@ -772,16 +797,16 @@ body#page-course-view-ubsweeks .activityiconcontainer {
   border-radius: 50% !important;
 }
 
-body#page-course-view-ubsweeks .activityicon {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activityicon {
   width: 19px !important;
   height: 19px !important;
   object-fit: contain !important;
 }
 
-body#page-course-view-ubsweeks .coursemos-course-main
+html.plato-classic-course-active body#page-course-view-ubsweeks .coursemos-course-main
   .ubsweeks > .course-section .course-section-content
   .activity .activity-flex .activity-container .activity-name-area,
-body#page-course-view-ubsweeks .activity-container .activity-name-area {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-container .activity-name-area {
   position: static !important;
   display: flex !important;
   inset: auto !important;
@@ -802,14 +827,14 @@ body#page-course-view-ubsweeks .activity-container .activity-name-area {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .coursemos-course-main
+html.plato-classic-course-active body#page-course-view-ubsweeks .coursemos-course-main
   .ubsweeks > .course-section .course-section-content
   .activity .activity-flex .activity-container .activity-name-area .activitytitle,
-body#page-course-view-ubsweeks .coursemos-course-main
+html.plato-classic-course-active body#page-course-view-ubsweeks .coursemos-course-main
   .ubsweeks > .course-section .course-section-content
   .activity .activity-flex .activity-container .activity-name-area .activityname,
-body#page-course-view-ubsweeks .activity-container .activity-name-area .activitytitle,
-body#page-course-view-ubsweeks .activity-container .activity-name-area .activityname {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-container .activity-name-area .activitytitle,
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-container .activity-name-area .activityname {
   position: static !important;
   inset: auto !important;
   display: block !important;
@@ -827,9 +852,9 @@ body#page-course-view-ubsweeks .activity-container .activity-name-area .activity
   transform: none !important;
 }
 
-body#page-course-view-ubsweeks .activity-extend-info,
-body#page-course-view-ubsweeks .activity-information,
-body#page-course-view-ubsweeks .availabilityinfo {
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-extend-info,
+html.plato-classic-course-active body#page-course-view-ubsweeks .activity-information,
+html.plato-classic-course-active body#page-course-view-ubsweeks .availabilityinfo {
   margin: 0 !important;
   color: #f15d43 !important;
   font-size: 12px !important;
@@ -837,7 +862,7 @@ body#page-course-view-ubsweeks .availabilityinfo {
   text-align: left !important;
 }
 
-body#page-course-view-ubsweeks .contentafterlink {
+html.plato-classic-course-active body#page-course-view-ubsweeks .contentafterlink {
   margin: 0 !important;
   padding: 4px 10px 11px 48px !important;
   color: #666 !important;
@@ -847,65 +872,65 @@ body#page-course-view-ubsweeks .contentafterlink {
 }
 
 @media (max-width: 991.98px) {
-  body#page-course-view-ubsweeks #page-content {
+  html.plato-classic-course-active body#page-course-view-ubsweeks #page-content {
     padding: 0 0 38px !important;
   }
 
-  body#page-course-view-ubsweeks .dashboard-header {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header {
     min-height: 120px !important;
     padding: 23px !important;
   }
 
-  body#page-course-view-ubsweeks .plato-classic-course-shortcuts {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcuts {
     gap: 24px;
   }
 
-  body#page-course-view-ubsweeks .course-section-header {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-header {
     padding: 20px 17px 7px !important;
     align-items: center !important;
     flex-flow: row wrap !important;
     gap: 4px !important;
   }
 
-  body#page-course-view-ubsweeks .course-section-header .section-period {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-header .section-period {
     margin-left: 0 !important;
   }
 
-  body#page-course-view-ubsweeks .course-section-content {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .course-section-content {
     padding: 3px 17px 20px !important;
   }
 }
 
 @media (max-width: 600px) {
-  body#page-course-view-ubsweeks .dashboard-header-title {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .dashboard-header-title {
     font-size: 21px !important;
   }
 
-  body#page-course-view-ubsweeks .plato-classic-course-overview {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-overview {
     padding-right: 14px;
     padding-left: 14px;
   }
 
-  body#page-course-view-ubsweeks .plato-classic-course-shortcuts {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcuts {
     justify-content: space-between;
     gap: 8px;
   }
 
-  body#page-course-view-ubsweeks .plato-classic-course-shortcut-link {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-shortcut-link {
     width: 82px;
   }
 
-  body#page-course-view-ubsweeks .course-format-container {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .course-format-container {
     padding-top: 92px !important;
   }
 
-  body#page-course-view-ubsweeks .activity-filter.activity-filter-multiple {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .activity-filter.activity-filter-multiple {
     top: 48px !important;
     left: 13px !important;
     right: auto !important;
   }
 
-  body#page-course-view-ubsweeks .section-period-text {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .section-period-text {
     white-space: normal !important;
   }
 }

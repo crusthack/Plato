@@ -1,4 +1,4 @@
-.plato-classic-default-avatar {
+html.plato-classic-avatar-active .plato-classic-default-avatar {
   overflow: hidden !important;
   padding: 0 !important;
   border-radius: 50% !important;
@@ -7,7 +7,7 @@
   text-indent: 0 !important;
 }
 
-.plato-classic-default-avatar > .plato-classic-default-avatar-image {
+html.plato-classic-avatar-active .plato-classic-default-avatar > .plato-classic-default-avatar-image {
   display: block !important;
   box-sizing: border-box !important;
   width: 100% !important;
