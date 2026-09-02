@@ -98,7 +98,8 @@
       ["교수학습지원센터", "https://ctl.pusan.ac.kr"],
       ["학생지원시스템", "https://onestop.pusan.ac.kr"],
       ["교육정보시스템", "https://one.pusan.ac.kr"],
-      ["도서관", "https://lib.pusan.ac.kr"]
+      ["도서관", "https://lib.pusan.ac.kr"],
+      ["구버전 플라토", "https://dev-plato.pusan.ac.kr/"]
     ].forEach(([label, href]) => {
       const item = element("li", "site-item");
       item.append(anchor(label, href));

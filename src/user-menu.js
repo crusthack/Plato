@@ -161,6 +161,10 @@
   const notificationTabLabel = element("span", "plato-classic-user-tab-label", "알림");
   const notificationCount = element("span", "plato-classic-user-tab-count");
   notificationCount.hidden = true;
+  const headerNotificationCount = element("span", "plato-classic-user-unread-count");
+  headerNotificationCount.hidden = true;
+  headerNotificationCount.setAttribute("aria-label", "읽지 않은 알림 없음");
+  userButton.append(headerNotificationCount);
   notificationTab.append(notificationTabLabel, notificationCount);
   const close = element("button", "plato-classic-user-close", "×");
   [myTab, notificationTab, close].forEach((button) => { button.type = "button"; });
@@ -281,11 +285,33 @@
   panel.append(tabs, content);
   overlayHost.append(backdrop, panel);
 
+  const nativeUnreadCount = () => {
+    const candidates = [...document.querySelectorAll(
+      ".btn-notification .notification-badge, .notification-badge"
+    )].filter((node) => !header.contains(node));
+    for (const candidate of candidates) {
+      const count = Number.parseInt(normalize(candidate.textContent), 10);
+      if (Number.isFinite(count) && count >= 0) return count;
+    }
+    return null;
+  };
   const updateNotificationCount = (value) => {
     const count = Number.parseInt(String(value ?? ""), 10);
     const visible = Number.isFinite(count) && count > 0;
     notificationCount.hidden = !visible;
     notificationCount.textContent = visible ? (count > 99 ? "99+" : String(count)) : "";
+    headerNotificationCount.hidden = !visible;
+    headerNotificationCount.textContent = visible ? (count > 99 ? "99+" : String(count)) : "";
+    headerNotificationCount.setAttribute(
+      "aria-label",
+      visible ? `읽지 않은 알림 ${count}개` : "읽지 않은 알림 없음"
+    );
+  };
+  const syncNativeUnreadCount = ({ clearWhenMissing = false } = {}) => {
+    const count = nativeUnreadCount();
+    if (count !== null) updateNotificationCount(count);
+    else if (clearWhenMissing) updateNotificationCount(0);
+    return count;
   };
   const readSesskey = () => {
     const inputValue = document.querySelector("input[name='sesskey']")?.value;
@@ -345,9 +371,15 @@
     if (detail) state.append(element("span", "", detail));
     notificationList.append(state);
   };
-  const renderNotifications = (items, totalCount = items.length) => {
+  const renderNotifications = (items, unreadCount = null) => {
     notificationList.replaceChildren();
-    updateNotificationCount(totalCount);
+    const nativeCount = syncNativeUnreadCount();
+    if (nativeCount === null) {
+      const count = unreadCount === null
+        ? items.filter((item) => item.read !== true).length
+        : unreadCount;
+      updateNotificationCount(count);
+    }
     if (!items.length) {
       renderNotificationState("새 알림이 없습니다.", "최신 알림을 모두 확인했습니다.");
       return;
@@ -411,9 +443,14 @@
     const items = readNotifications(parsed);
     const countCandidate = payload?.count ?? payload?.totalcount ?? payload?.totalCount;
     const parsedCount = Number.parseInt(String(countCandidate ?? ""), 10);
+    const unreadCandidate = payload?.unreadcount ?? payload?.unreadCount ?? payload?.unread;
+    const parsedUnread = Number.parseInt(String(unreadCandidate ?? ""), 10);
     return {
       items,
-      total: Number.isFinite(parsedCount) ? parsedCount : items.length
+      total: Number.isFinite(parsedCount) ? parsedCount : items.length,
+      unread: Number.isFinite(parsedUnread)
+        ? parsedUnread
+        : items.filter((item) => item.read !== true).length
     };
   };
   const refreshNotifications = ({ force = false } = {}) => {
@@ -422,11 +459,11 @@
       if (localItems.length) {
         notificationItems = localItems;
         notificationTotal = localItems.length;
-        renderNotifications(localItems, localItems.length);
+        renderNotifications(localItems);
         return Promise.resolve();
       }
       if (notificationFetchedAt && Date.now() - notificationFetchedAt < NOTIFICATION_CACHE_MS) {
-        renderNotifications(notificationItems, notificationTotal);
+        renderNotifications(notificationItems);
         return Promise.resolve();
       }
       if (notificationAttemptedAt && Date.now() - notificationAttemptedAt < NOTIFICATION_RETRY_MS) {
@@ -438,18 +475,18 @@
     notificationPane.setAttribute("aria-busy", "true");
     renderNotificationState("알림을 불러오는 중입니다.", "PLATO에서 최신 알림을 확인하고 있습니다.");
     notificationRequest = requestNotifications()
-      .then(({ items, total }) => {
+      .then(({ items, total, unread }) => {
         notificationItems = items;
         notificationTotal = total;
         notificationFetchedAt = Date.now();
-        renderNotifications(items, total);
+        renderNotifications(items, unread);
       })
       .catch(() => {
         const localItems = readNotifications(document);
         if (localItems.length) {
           notificationItems = localItems;
           notificationTotal = localItems.length;
-          renderNotifications(localItems, localItems.length);
+          renderNotifications(localItems);
         } else {
           updateNotificationCount(0);
           renderNotificationState("알림을 불러오지 못했습니다.", "잠시 후 새로고침하거나 알림 센터에서 확인해 주세요.");
@@ -553,4 +590,13 @@
       setOpen(false);
     }
   });
+  syncNativeUnreadCount();
+  const nativeNotificationRoot = document.querySelector("#pw-notification, .btn-notification")?.parentElement;
+  if (nativeNotificationRoot) {
+    new MutationObserver(() => syncNativeUnreadCount({ clearWhenMissing: true })).observe(nativeNotificationRoot, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+  }
 })();

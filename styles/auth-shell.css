@@ -136,6 +136,7 @@
 
 #plato-classic-page-header .btn-userinfo,
 #plato-classic-auth-header .btn-userinfo {
+  position: relative !important;
   display: flex !important;
   height: auto !important;
   min-height: 26px !important;
@@ -151,6 +152,32 @@
   line-height: 1.5 !important;
   cursor: pointer !important;
   white-space: nowrap !important;
+}
+
+#plato-classic-page-header .plato-classic-user-unread-count,
+#plato-classic-auth-header .plato-classic-user-unread-count {
+  position: absolute !important;
+  z-index: 2 !important;
+  top: -7px !important;
+  right: -9px !important;
+  display: inline-flex !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  padding: 0 4px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 2px solid var(--classic-shell-blue) !important;
+  border-radius: 9px !important;
+  background: #e53935 !important;
+  color: #fff !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  line-height: 14px !important;
+}
+
+#plato-classic-page-header .plato-classic-user-unread-count[hidden],
+#plato-classic-auth-header .plato-classic-user-unread-count[hidden] {
+  display: none !important;
 }
 
 #plato-classic-page-header .fullname,

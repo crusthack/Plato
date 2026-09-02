@@ -62,7 +62,14 @@
   const boardPattern = /\/mod\/(?:ubboard|forum|board)\/view\.php$/i;
   const discoverBoardDefinitions = () => {
     const seen = new Set();
-    return [...document.querySelectorAll("#pw-nav-menu a[href]")].flatMap((link) => {
+    const links = document.querySelectorAll([
+      "#pw-nav-menu a[href]",
+      "#section-0 .activity.modtype_ubboard a[href]",
+      "#section-0 a[href*='/mod/ubboard/view.php']",
+      "#section-0 a[href*='/mod/forum/view.php']",
+      "#section-0 a[href*='/mod/board/view.php']"
+    ].join(","));
+    return [...links].flatMap((link) => {
       let url;
       try {
         url = new URL(link.getAttribute("href"), location.origin);
@@ -71,9 +78,14 @@
       }
       if (url.origin !== location.origin || !boardPattern.test(url.pathname) || seen.has(url.href)) return [];
 
+      const activity = link.closest(".activity[data-for='cmitem'], .activity-wrapper, [data-region='activity-card']");
       const originalLabel = String(
+        activity?.querySelector(".activityname")?.textContent ||
+        activity?.querySelector("[data-activityname]")?.getAttribute("data-activityname") ||
+        activity?.getAttribute("data-activityname") ||
         link.querySelector(".menu-name")?.textContent ||
         link.getAttribute("title") ||
+        link.getAttribute("aria-label") ||
         link.textContent ||
         "게시판"
       ).replace(/\s+/g, " ").trim();
@@ -198,20 +210,24 @@
   let shortcutObserver = null;
   const installShortcutObserver = () => {
     if (shortcutObserver) return;
-    const navigation = document.querySelector("#pw-nav-menu");
-    if (!navigation) return;
+    const roots = [
+      document.querySelector("#pw-nav-menu"),
+      document.querySelector("#section-0"),
+      document.querySelector("#region-main")
+    ].filter((root, index, all) => root && all.indexOf(root) === index);
+    if (!roots.length) return;
     let syncTimer = 0;
     shortcutObserver = new MutationObserver(() => {
       clearTimeout(syncTimer);
       syncTimer = window.setTimeout(renderOverview, 50);
     });
-    shortcutObserver.observe(navigation, {
+    roots.forEach((root) => shortcutObserver.observe(root, {
       childList: true,
       subtree: true,
       characterData: true,
       attributes: true,
-      attributeFilter: ["href"]
-    });
+      attributeFilter: ["href", "data-activityname"]
+    }));
   };
 
   const normalizeDashboardProfessorName = () => {
