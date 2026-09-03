@@ -44,7 +44,9 @@
   보존하며, 본문과 외곽 캔버스를 흰색으로 통일
 - 알림 탭은 페이지에 이미 렌더링된 목록을 우선 사용하고, 사용자가 새로고침을
   알림 탭 최초 진입 또는 새로고침 시 PLATO의 읽기 전용 알림 `lists` action 호출
-- 강의실 첫 진입은 `mode=sections#section-0` 강의 개요로 연결하고, 강의 개요에
+- 메인 `나의 강좌`와 강의실의 강좌 전환 목록은 `mode=sections` 강의 개요로
+  연결하고, 강의실에 표시된 현재 강좌명·교수명은 `mode` 없는 강좌 메인으로 연결
+- 강의 개요에
   교수가 추가한 게시판도 상단 게시판 바로가기에 반영
 - 툴바 아이콘 팝업에서 Classic UI 전체 또는 화면별 활성화 전환
 
@@ -102,11 +104,14 @@ GitHub 저장소의 Pages 배포 원본을 `docs/` 폴더에 두었습니다. �
 ```powershell
 node scripts/validate-extension.mjs
 node scripts/validate-api-archive.mjs
+python scripts/package_extension.py
 ```
 
 첫 번째 검사는 매니페스트 참조 파일, JavaScript 구문, 허용 권한과 호스트 범위,
 제품 코드의 하드코딩된 자격증명·세션 쿠키·원격 실행 스크립트를 확인합니다.
 두 번째 검사는 API 조사 자료의 형식과 비식별 상태를 확인합니다.
+마지막 명령은 실행 파일만 묶어 프로젝트 상위 폴더에
+`plato-classic-<version>.zip`을 생성합니다.
 
 ## API 조사 자료
 

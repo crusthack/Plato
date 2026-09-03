@@ -276,6 +276,13 @@
     }
   };
 
+  const courseOverviewHref = (href) => {
+    const id = courseIdFromHref(href);
+    return id
+      ? `${location.origin}/course/view.php?id=${encodeURIComponent(id)}&mode=sections`
+      : "";
+  };
+
   const cleanCourseTitle = (value) => String(value || "")
     .replace(/\s+/g, " ")
     .replace(/^강좌\s*[:：]?\s*/i, "")
@@ -412,7 +419,7 @@
     courses.forEach((course) => {
       const item = document.createElement("li");
       const link = document.createElement("a");
-      link.href = course.href;
+      link.href = courseOverviewHref(course.href) || course.href;
       link.className = "plato-classic-course-switcher-link";
 
       const title = document.createElement("strong");
@@ -448,15 +455,10 @@
     if (!link || !courseName) return;
 
     if (courseId && courseIdFromHref(link.getAttribute("href")) === courseId) {
-      link.removeAttribute("href");
+      link.href = `${location.origin}/course/view.php?id=${encodeURIComponent(courseId)}`;
       link.classList.add("is-current-course");
-      link.setAttribute("aria-current", "page");
-      link.setAttribute("role", "button");
-      link.setAttribute("tabindex", "0");
-      link.setAttribute("aria-haspopup", "true");
-      link.setAttribute("aria-expanded", "false");
-      link.setAttribute("aria-label", "다른 강좌 목록 열기");
-      link.title = "다른 강좌 목록 열기";
+      link.setAttribute("aria-label", "현재 강좌 메인페이지로 이동");
+      link.title = "현재 강좌 메인페이지로 이동";
       link.removeAttribute("target");
     }
 
@@ -506,8 +508,6 @@
     menu.className = "plato-classic-course-switcher-menu";
     menu.hidden = true;
     button.setAttribute("aria-controls", menu.id);
-    const currentControl = host.querySelector(".coursename-prof.is-current-course");
-    if (currentControl) currentControl.setAttribute("aria-controls", menu.id);
     const heading = document.createElement("div");
     heading.className = "plato-classic-course-switcher-heading";
     heading.textContent = "나의 다른 강좌";
@@ -529,13 +529,11 @@
     const close = () => {
       menu.hidden = true;
       button.setAttribute("aria-expanded", "false");
-      if (currentControl) currentControl.setAttribute("aria-expanded", "false");
     };
     const open = async (trigger = button) => {
       lastTrigger = trigger;
       menu.hidden = false;
       button.setAttribute("aria-expanded", "true");
-      if (currentControl) currentControl.setAttribute("aria-expanded", "true");
       if (loaded) return;
       loaded = true;
       renderCourseSwitcherItems(list, await loadEnrolledCourses());
@@ -548,21 +546,6 @@
     button.addEventListener("click", (event) => {
       event.stopPropagation();
       toggle(button);
-    });
-    if (currentControl) {
-      currentControl.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") return;
-        event.preventDefault();
-        event.stopPropagation();
-        toggle(currentControl);
-      });
-    }
-    host.addEventListener("click", (event) => {
-      if (menu.contains(event.target) || button.contains(event.target)) return;
-      const trigger = event.target.closest(".coursename-prof.is-current-course");
-      if (!trigger) return;
-      event.stopPropagation();
-      toggle(trigger);
     });
     menu.addEventListener("click", (event) => event.stopPropagation());
     menu.addEventListener("wheel", (event) => {

@@ -64,6 +64,16 @@
     }
   };
 
+  const courseOverviewHref = (value = "") => {
+    const safeHref = safeCurrentCourseHref(value);
+    if (!safeHref) return "";
+    const source = new URL(safeHref);
+    const target = new URL("/course/view.php", location.origin);
+    target.searchParams.set("id", source.searchParams.get("id"));
+    target.searchParams.set("mode", "sections");
+    return target.href;
+  };
+
   const safeShowcaseHref = (value = "", base = "https://plato.pusan.ac.kr/") => {
     try {
       const url = new URL(value, base);
@@ -890,7 +900,7 @@
     courses.forEach((course) => {
       const item = element("li", "course-item");
       const courseBox = element("div", "course-box");
-      const courseLink = anchor("", course.href, "course-link");
+      const courseLink = anchor("", courseOverviewHref(course.href), "course-link");
       const courseName = element("div", "course-name");
       const label = element("div", "course-label");
       const badge = element("span", "badge-course");
