@@ -10,7 +10,7 @@ import zipfile
 from pathlib import Path
 
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent
 RUNTIME_ENTRIES = (
     Path("manifest.json"),
     Path("src"),

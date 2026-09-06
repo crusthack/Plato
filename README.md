@@ -104,7 +104,7 @@ GitHub 저장소의 Pages 배포 원본을 `docs/` 폴더에 두었습니다. �
 ```powershell
 node scripts/validate-extension.mjs
 node scripts/validate-api-archive.mjs
-python scripts/package_extension.py
+py package_extension.py
 ```
 
 첫 번째 검사는 매니페스트 참조 파일, JavaScript 구문, 허용 권한과 호스트 범위,
