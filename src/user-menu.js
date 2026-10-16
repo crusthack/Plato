@@ -307,6 +307,18 @@
       visible ? `읽지 않은 알림 ${count}개` : "읽지 않은 알림 없음"
     );
   };
+  // Keep PLATO's own (stale) badge in line with a freshly fetched count so that the
+  // native-badge observer does not bring the old number back.
+  const setNativeUnreadCount = (value) => {
+    const count = Math.max(0, Number.parseInt(String(value ?? ""), 10) || 0);
+    document.querySelectorAll(".btn-notification .notification-badge, .notification-badge")
+      .forEach((node) => {
+        if (header.contains(node)) return;
+        node.textContent = String(count);
+        node.hidden = count === 0;
+        node.style.display = count === 0 ? "none" : "";
+      });
+  };
   const syncNativeUnreadCount = ({ clearWhenMissing = false } = {}) => {
     const count = nativeUnreadCount();
     if (count !== null) updateNotificationCount(count);
@@ -371,10 +383,16 @@
     if (detail) state.append(element("span", "", detail));
     notificationList.append(state);
   };
-  const renderNotifications = (items, unreadCount = null) => {
+  const renderNotifications = (items, unreadCount = null, { fromServer = false } = {}) => {
     notificationList.replaceChildren();
-    const nativeCount = syncNativeUnreadCount();
-    if (nativeCount === null) {
+    if (fromServer) {
+      // The "lists" request marks the listed notifications as read on PLATO,
+      // so the badge must follow the fresh result instead of the page-load badge.
+      const itemUnread = items.filter((item) => item.read !== true).length;
+      const count = unreadCount === null ? itemUnread : Math.min(itemUnread, unreadCount);
+      setNativeUnreadCount(count);
+      updateNotificationCount(count);
+    } else if (syncNativeUnreadCount() === null) {
       const count = unreadCount === null
         ? items.filter((item) => item.read !== true).length
         : unreadCount;
@@ -463,7 +481,7 @@
         return Promise.resolve();
       }
       if (notificationFetchedAt && Date.now() - notificationFetchedAt < NOTIFICATION_CACHE_MS) {
-        renderNotifications(notificationItems);
+        renderNotifications(notificationItems, null, { fromServer: true });
         return Promise.resolve();
       }
       if (notificationAttemptedAt && Date.now() - notificationAttemptedAt < NOTIFICATION_RETRY_MS) {
@@ -479,7 +497,7 @@
         notificationItems = items;
         notificationTotal = total;
         notificationFetchedAt = Date.now();
-        renderNotifications(items, unread);
+        renderNotifications(items, unread, { fromServer: true });
       })
       .catch(() => {
         const localItems = readNotifications(document);
