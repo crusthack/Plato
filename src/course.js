@@ -105,7 +105,9 @@
   const findCourseLink = (aliases) => {
     const links = [...document.querySelectorAll(
       "#region-main a[href], #pw-nav-menu a[href]"
-    )].filter((link) => !link.closest(".plato-classic-course-overview"));
+    )].filter((link) => !link.closest(
+      ".plato-classic-course-overview, .plato-classic-course-notices, .plato-classic-course-switcher-menu, .plato-classic-course-switcher"
+    ));
 
     const exact = links.find((link) => {
       const values = [link.textContent, link.title, link.getAttribute("aria-label")].map(normalize);
@@ -206,6 +208,184 @@
     shortcuts.replaceChildren(...shortcutDefinitions.map(createShortcut));
   };
 
+  // ---- 과목공지 (old PLATO style) -------------------------------------------
+  const NOTICE_LIMIT = 5;
+  const NOTICE_CLASS = "plato-classic-course-notices";
+  let noticeState = { boardHref: "", items: null, loading: false, failed: false };
+
+  const sameOriginUrl = (href) => {
+    try {
+      const url = new URL(href, location.origin);
+      return url.origin === location.origin ? url : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const findNoticeBoardHref = () => {
+    const more = document.querySelector(
+      ".csms-box-announcement .button-container a[href*='/mod/ubboard/view.php']"
+    );
+    const candidate = more?.getAttribute("href")
+      || discoverBoardDefinitions().find((definition) => definition.key === "notice")?.source?.getAttribute("href")
+      || "";
+    const url = sameOriginUrl(candidate);
+    return url && /\/mod\/ubboard\/view\.php$/i.test(url.pathname) ? url.href : "";
+  };
+
+  const parseNoticeDate = (text) => {
+    const match = String(text || "").match(/(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})(?:\D+(\d{1,2}):(\d{2}))?/);
+    if (!match) return { time: 0, label: String(text || "").trim() };
+    const [, y, m, d, hh, mm] = match;
+    const pad = (value) => String(value).padStart(2, "0");
+    const time = new Date(Number(y), Number(m) - 1, Number(d), Number(hh || 0), Number(mm || 0)).getTime();
+    const label = `${y}/${pad(m)}/${pad(d)}${hh ? ` ${pad(hh)}:${mm}` : ""}`;
+    return { time, label };
+  };
+
+  const noticeKey = (href) => {
+    const url = sameOriginUrl(href);
+    return url?.searchParams.get("bwid") || url?.href || href;
+  };
+
+  const toNotice = (link, dateText) => {
+    const url = sameOriginUrl(link?.getAttribute("href"));
+    if (!url || !/\/mod\/ubboard\/article\.php$/i.test(url.pathname)) return null;
+    const subject = String(link.getAttribute("title") || link.textContent || "").replace(/\s+/g, " ").trim();
+    if (!subject) return null;
+    return { href: url.href, subject, ...parseNoticeDate(dateText) };
+  };
+
+  // Items already rendered by PLATO's "강의실 소식" box (usually only 2).
+  const readInlineNotices = () => [...document.querySelectorAll(
+    ".csms-box-announcement .csms-board-item"
+  )].map((item) => toNotice(
+    item.querySelector("a[href*='article.php']"),
+    item.querySelector(".csms-board-item-date")?.textContent
+  )).filter(Boolean);
+
+  // Items parsed from the notice board list page (/mod/ubboard/view.php?id=…).
+  const parseBoardNotices = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const rows = [...doc.querySelectorAll(
+      "#ubboard-list-form .grid-row:not(.grid-row-nodata), .ubboard_container table tbody tr"
+    )];
+    return rows.map((row) => {
+      const link = row.querySelector(".grid-cell-subject a[href*='article.php'], a[href*='article.php']");
+      const date = row.querySelector(".grid-cell-date, td.date, .date")?.textContent;
+      return toNotice(link, date);
+    }).filter(Boolean);
+  };
+
+  const pickNotices = (items) => {
+    const seen = new Set();
+    return items
+      .filter((item) => {
+        const key = noticeKey(item.href);
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
+      .sort((a, b) => b.time - a.time)
+      .slice(0, NOTICE_LIMIT);
+  };
+
+  const loadBoardNotices = async (boardHref) => {
+    noticeState.loading = true;
+    try {
+      const response = await fetch(boardHref, { credentials: "same-origin", cache: "no-store" });
+      if (!response.ok || /\/login\//.test(new URL(response.url).pathname)) throw new Error("notice board unavailable");
+      const items = parseBoardNotices(await response.text());
+      noticeState.items = pickNotices([...items, ...readInlineNotices()]);
+    } catch {
+      noticeState.failed = true;
+    } finally {
+      noticeState.loading = false;
+      renderNotices();
+    }
+  };
+
+  // Same markup as the old PLATO course page ("과목공지").
+  const buildNoticeBlock = () => {
+    const block = document.createElement("div");
+    block.className = `${NOTICE_CLASS} course-article row no-gutters`;
+    block.innerHTML = `
+      <div class="col-12 col-article">
+        <div class="course-article-header">
+          <h5>과목공지</h5>
+          <div class="actions">
+            <a class="btn btn-default btn-more" title="과목공지 더보기" aria-label="과목공지 더보기">
+              <svg class="fa fa-plus" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 1v8M1 5h8" /></svg>
+            </a>
+          </div>
+        </div>
+        <div class="course-article-body"><ul class="article-list"></ul></div>
+      </div>`;
+    return block;
+  };
+
+  const renderNotices = () => {
+    const overview = document.querySelector(".plato-classic-course-overview");
+    if (!overview) return;
+
+    const boardHref = findNoticeBoardHref();
+    if (boardHref && boardHref !== noticeState.boardHref) {
+      noticeState = { boardHref, items: null, loading: false, failed: false };
+    }
+
+    let block = document.querySelector(`.${NOTICE_CLASS}`);
+    if (!block) block = buildNoticeBlock();
+    if (block.nextElementSibling !== overview) overview.insertAdjacentElement("beforebegin", block);
+
+    const more = block.querySelector(".btn-more");
+    if (boardHref) {
+      if (more.getAttribute("href") !== boardHref) more.href = boardHref;
+    } else {
+      more.removeAttribute("href");
+    }
+    more.hidden = !boardHref;
+
+    if (boardHref && !noticeState.items && !noticeState.loading && !noticeState.failed) {
+      loadBoardNotices(boardHref);
+    }
+
+    const items = noticeState.items || pickNotices(readInlineNotices());
+    const signature = `${noticeState.loading}|${items.map((item) => `${item.href}|${item.subject}|${item.label}`).join("\n")}`;
+    const list = block.querySelector(".article-list");
+    if (list.dataset.signature === signature) return;
+    list.dataset.signature = signature;
+
+    if (!items.length) {
+      const empty = document.createElement("li");
+      empty.className = "article-list-item is-empty";
+      empty.textContent = noticeState.loading ? "공지사항을 불러오는 중입니다." : "등록된 공지사항이 없습니다.";
+      list.replaceChildren(empty);
+    } else {
+      list.replaceChildren(...items.map((item) => {
+        const li = document.createElement("li");
+        li.className = "article-list-item";
+        const link = document.createElement("a");
+        link.href = item.href;
+        const subject = document.createElement("div");
+        subject.className = "article-subject";
+        subject.title = item.subject;
+        subject.textContent = item.subject;
+        const date = document.createElement("div");
+        date.className = "article-date";
+        date.textContent = item.label;
+        link.append(subject, date);
+        li.append(link);
+        return li;
+      }));
+    }
+    document.documentElement.classList.add("plato-classic-course-notices-ready");
+  };
+
+  const renderAll = () => {
+    renderOverview();
+    renderNotices();
+  };
+
   let shortcutObserver = null;
   const installShortcutObserver = () => {
     if (shortcutObserver) return;
@@ -218,7 +398,7 @@
     let syncTimer = 0;
     shortcutObserver = new MutationObserver(() => {
       clearTimeout(syncTimer);
-      syncTimer = window.setTimeout(renderOverview, 50);
+      syncTimer = window.setTimeout(renderAll, 50);
     });
     roots.forEach((root) => shortcutObserver.observe(root, {
       childList: true,
@@ -269,32 +449,30 @@
     if (!scroller || scroller.dataset.classicScrollGuard === "true") return;
     scroller.dataset.classicScrollGuard = "true";
 
+    // A wheel tick starts a smooth-scroll animation that keeps firing scroll
+    // events for a few hundred ms. Those tail events belong to the user, so the
+    // gesture window stays open while they keep arriving.
+    const USER_SCROLL_WINDOW = 400;
+    const USER_SCROLL_TAIL = 150;
+
     let acceptedScrollTop = scroller.scrollTop;
-    let userGesture = false;
+    let userScrollUntil = 0;
     let pointerActive = false;
     let restoring = false;
-    let captureFrame = 0;
-    let releaseFrame = 0;
     let restoreFrame = 0;
     let restoreTimer = 0;
 
+    const userScrolling = () => pointerActive || performance.now() < userScrollUntil;
+
     const captureUserScroll = () => {
-      userGesture = true;
-      cancelAnimationFrame(captureFrame);
-      cancelAnimationFrame(releaseFrame);
-      captureFrame = requestAnimationFrame(() => {
-        acceptedScrollTop = scroller.scrollTop;
-        releaseFrame = requestAnimationFrame(() => {
-          if (!pointerActive) userGesture = false;
-        });
-      });
+      userScrollUntil = performance.now() + USER_SCROLL_WINDOW;
     };
 
     const restoreAcceptedScroll = () => {
-      if (pointerActive || userGesture) return;
+      if (userScrolling()) return;
       cancelAnimationFrame(restoreFrame);
       restoreFrame = requestAnimationFrame(() => {
-        if (pointerActive || userGesture) return;
+        if (userScrolling()) return;
         if (Math.abs(scroller.scrollTop - acceptedScrollTop) < 1) return;
         restoring = true;
         scroller.scrollTo({ top: acceptedScrollTop, behavior: "auto" });
@@ -318,7 +496,6 @@
     });
     scroller.addEventListener("pointerdown", () => {
       pointerActive = true;
-      userGesture = true;
     }, true);
     scroller.addEventListener("keydown", (event) => {
       if (!["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) {
@@ -331,9 +508,7 @@
       if (!pointerActive) return;
       acceptedScrollTop = scroller.scrollTop;
       pointerActive = false;
-      requestAnimationFrame(() => {
-        userGesture = false;
-      });
+      captureUserScroll();
     };
     window.addEventListener("pointerup", finishPointerGesture, true);
     window.addEventListener("pointercancel", finishPointerGesture, true);
@@ -341,32 +516,33 @@
 
     scroller.addEventListener("scroll", () => {
       if (restoring) return;
-      if (pointerActive || userGesture) {
+      if (userScrolling()) {
         acceptedScrollTop = scroller.scrollTop;
+        userScrollUntil = Math.max(userScrollUntil, performance.now() + USER_SCROLL_TAIL);
         return;
       }
       restoreAcceptedScroll();
     }, { passive: true });
 
     window.addEventListener("scroll", (event) => {
-      if (event.target === scroller || pointerActive || userGesture) return;
+      if (event.target === scroller || userScrolling()) return;
       restoreAcceptedScroll();
       clearTimeout(restoreTimer);
       restoreTimer = window.setTimeout(restoreAcceptedScroll, 80);
     }, { capture: true, passive: true });
   };
 
-  renderOverview();
+  renderAll();
   installShortcutObserver();
   normalizeDashboardProfessorName();
   organizeWeeks();
   installSidebarScrollGuard();
   window.setTimeout(() => {
-    renderOverview();
+    renderAll();
     installShortcutObserver();
     normalizeDashboardProfessorName();
     organizeWeeks();
-      installSidebarScrollGuard();
+    installSidebarScrollGuard();
   }, 800);
   };
 

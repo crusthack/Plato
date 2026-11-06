@@ -1,0 +1,30 @@
+/* Colors that follow the rate recalculated by src/attendance.js. */
+html.plato-classic-attendance-active .my-userinfo-attendance-container {
+  --classic-attend-good: #1769aa;
+  --classic-attend-fair: #2e9e5b;
+  --classic-attend-warn: #e08a00;
+  --classic-attend-bad: #d93a3a;
+  --classic-attend-none: #9aa3ab;
+}
+
+html.plato-classic-attendance-active .my-userinfo-attendance-container .progress-bar[data-classic-tier] {
+  transition: width 0.3s ease;
+}
+
+html.plato-classic-attendance-active .my-userinfo-attendance-container .progress-bar[data-classic-tier="good"] { background: var(--classic-attend-good) !important; }
+html.plato-classic-attendance-active .my-userinfo-attendance-container .progress-bar[data-classic-tier="fair"] { background: var(--classic-attend-fair) !important; }
+html.plato-classic-attendance-active .my-userinfo-attendance-container .progress-bar[data-classic-tier="warn"] { background: var(--classic-attend-warn) !important; }
+html.plato-classic-attendance-active .my-userinfo-attendance-container .progress-bar[data-classic-tier="bad"] { background: var(--classic-attend-bad) !important; }
+html.plato-classic-attendance-active .my-userinfo-attendance-container .progress-bar[data-classic-tier="none"] { background: var(--classic-attend-none) !important; }
+
+html.plato-classic-attendance-active .my-userinfo-attendance-container .desc-percent[data-classic-tier="good"] { color: var(--classic-attend-good) !important; }
+html.plato-classic-attendance-active .my-userinfo-attendance-container .desc-percent[data-classic-tier="fair"] { color: var(--classic-attend-fair) !important; }
+html.plato-classic-attendance-active .my-userinfo-attendance-container .desc-percent[data-classic-tier="warn"] { color: var(--classic-attend-warn) !important; }
+html.plato-classic-attendance-active .my-userinfo-attendance-container .desc-percent[data-classic-tier="bad"] { color: var(--classic-attend-bad) !important; }
+html.plato-classic-attendance-active .my-userinfo-attendance-container .desc-percent[data-classic-tier="none"] { color: var(--classic-attend-none) !important; }
+
+/* Highlighted words in the guide text use the same tier color. */
+html.plato-classic-attendance-active .attendance-guide-progress[data-classic-tier="good"] .attendance-guide span { color: var(--classic-attend-good) !important; }
+html.plato-classic-attendance-active .attendance-guide-progress[data-classic-tier="fair"] .attendance-guide span { color: var(--classic-attend-fair) !important; }
+html.plato-classic-attendance-active .attendance-guide-progress[data-classic-tier="warn"] .attendance-guide span { color: var(--classic-attend-warn) !important; }
+html.plato-classic-attendance-active .attendance-guide-progress[data-classic-tier="bad"] .attendance-guide span { color: var(--classic-attend-bad) !important; }

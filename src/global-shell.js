@@ -8,7 +8,13 @@
     location.pathname === "/index.php" ||
     /^\/my(?:\/|$)/.test(location.pathname) ||
     location.pathname.startsWith("/local/ubion/allcourse/regular/");
-  if (excludedPath || document.body.classList.contains("notloggedin") || document.getElementById(HEADER_ID)) return;
+  if (!excludedPath && document.body.classList.contains("notloggedin")) {
+    // No script restyles these pages (e.g. /login/index.php): reveal them right away
+    // instead of waiting for preload.js's fallback timer.
+    document.dispatchEvent(new CustomEvent("plato-classic-ready"));
+    return;
+  }
+  if (excludedPath || document.getElementById(HEADER_ID)) return;
 
   const normalize = (value = "") => value.replace(/\s+/g, " ").trim();
   const element = (tag, className, text) => {
@@ -174,11 +180,16 @@
   header.hidden = true;
   document.body.prepend(header);
   const defaults = { classicEnabled: true, dashboardEnabled: true };
+  let identityRequested = false;
   const applySettings = (settings) => {
     const enabled = settings.classicEnabled !== false && settings.dashboardEnabled !== false;
     header.hidden = !enabled;
     document.documentElement.classList.toggle(ACTIVE_CLASS, enabled);
     document.dispatchEvent(new CustomEvent("plato-classic-ready"));
+    if (enabled && !identityRequested) {
+      identityRequested = true;
+      completeIdentity();
+    }
   };
   chrome.storage.local.get(defaults, applySettings);
   chrome.storage.onChanged.addListener((changes, areaName) => {
@@ -186,8 +197,11 @@
     chrome.storage.local.get(defaults, applySettings);
   });
 
-  const pageIdentity = readIdentity();
-  if (!pageIdentity.time || !pageIdentity.ip || !pageIdentity.name) {
+  // Only fetch the PLATO home page for missing identity info while the classic
+  // header is actually enabled.
+  function completeIdentity() {
+    const pageIdentity = readIdentity();
+    if (pageIdentity.time && pageIdentity.ip && pageIdentity.name) return;
     fetch("https://plato.pusan.ac.kr/", { credentials: "include", cache: "no-store" })
       .then((response) => response.ok ? response.text() : "")
       .then((html) => {

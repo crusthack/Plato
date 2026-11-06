@@ -21,11 +21,36 @@
     if (settings.classicEnabled === false) reveal();
   });
 
+  // True when the user typed into a form on this page, so a settings change made
+  // from the popup does not throw away unsaved input by reloading the tab.
+  let edited = false;
+  document.addEventListener("input", (event) => {
+    if (event.isTrusted) edited = true;
+  }, true);
+  const hasUnsavedInput = () => edited ||
+    [...document.querySelectorAll("textarea, input:not([type='hidden']):not([type='button']):not([type='submit'])")]
+      .some((field) => (field.type === "checkbox" || field.type === "radio")
+        ? field.checked !== field.defaultChecked
+        : field.value !== field.defaultValue);
+
   let reloadRequested = false;
+  const reloadWhenSafe = () => {
+    if (hasUnsavedInput()) return; // applied on the next page load instead
+    reloadRequested = true;
+    location.reload();
+  };
   chrome.storage.onChanged.addListener((changes, areaName) => {
     if (areaName !== "local" || reloadRequested) return;
     if (!Object.keys(changes).some((key) => SETTING_KEYS.has(key))) return;
-    reloadRequested = true;
-    location.reload();
+    if (document.visibilityState === "visible") {
+      reloadWhenSafe();
+      return;
+    }
+    // Background tabs reload once they are shown again.
+    document.addEventListener("visibilitychange", function onVisible() {
+      if (document.visibilityState !== "visible" || reloadRequested) return;
+      document.removeEventListener("visibilitychange", onVisible);
+      reloadWhenSafe();
+    });
   });
 })();

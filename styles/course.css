@@ -458,6 +458,11 @@ html.plato-classic-course-active body#page-course-view-ubsweeks .activity-flex {
 }
 
 html.plato-classic-course-active body#page-course-view-ubsweeks .activity-container {
+  /* Folder activities use a.stretched-link whose ::after overlay covers the
+     nearest positioned ancestor. The title wrappers below are static, so the
+     row itself must be the containing block or the overlay spills onto the
+     neighbouring activities. */
+  position: relative !important;
   display: flex !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -648,5 +653,152 @@ html.plato-classic-course-active body#page-course-view-ubsweeks .contentafterlin
 
   html.plato-classic-course-active body#page-course-view-ubsweeks .section-period-text {
     white-space: normal !important;
+  }
+}
+
+/* 과목공지 — copied from the old PLATO theme (coursemosv2, .course-article). */
+html.plato-classic-course-notices-ready.plato-classic-course-active body#page-course-view-ubsweeks .csms-box-announcement {
+  display: none !important;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices.course-article {
+  display: flex;
+  box-sizing: border-box;
+  margin: 16px 0 20px;
+  border: 1px solid #dad9c6;
+  border-radius: 0;
+  background-color: #f3f2dd;
+  font-family: "Noto Sans KR", "Nanum Gothic", 나눔고딕, NanumGothic, 돋움, dotum, Helvetica, sans-serif, AppleGothic;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices + .plato-classic-course-overview {
+  margin-top: 0;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .col-article {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 19px 31px 19px 22px;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-header {
+  display: flex;
+  margin-bottom: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-header h5 {
+  margin: 0;
+  color: #212529;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-header .actions {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-header .actions .btn-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: none;
+  color: #212529;
+  font-size: 11px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-header .actions .btn-more[hidden] {
+  display: none;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-header .actions .btn-more:hover,
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-header .actions .btn-more:focus-visible {
+  border-color: #b3b3b3;
+  background-color: #ececec;
+  color: #212529;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-header .actions .btn-more svg {
+  width: 9px;
+  height: 9px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: butt;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-body .article-list {
+  margin: 0;
+  padding-left: 0;
+  color: #666;
+  list-style: none;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-body .article-list .article-list-item {
+  margin: 4px 0;
+  padding: 0 0 0 10px;
+  border: 0;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAYAAAB/qH1jAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB5JREFUeNpiTEtLM2ZgYBBkgAIWIF4FxEowAYAAAwA4UAJIHJI3zwAAAABJRU5ErkJggg==") no-repeat left center;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-body .article-list .article-list-item a {
+  display: flex;
+  overflow: hidden;
+  padding: 0;
+  color: #666;
+  text-decoration: none;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-body .article-list .article-list-item a:hover {
+  color: #666;
+  text-decoration: underline;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-body .article-list .article-list-item a .article-subject {
+  overflow: hidden;
+  margin-right: 2rem;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-body .article-list .article-list-item a .article-date {
+  flex: 0 0 auto;
+  margin-left: auto;
+  font-size: 14px;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-body .article-list .article-list-item.is-empty {
+  padding-left: 0;
+  background: none;
+  color: #666;
+  opacity: 0.8;
+}
+
+@media (max-width: 576px) {
+  html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .col-article {
+    padding: 16px 16px 16px 16px;
+  }
+
+  html.plato-classic-course-active body#page-course-view-ubsweeks .plato-classic-course-notices .course-article-body .article-list .article-list-item a .article-subject {
+    margin-right: 1rem;
   }
 }

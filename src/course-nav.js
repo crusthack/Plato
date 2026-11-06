@@ -54,6 +54,11 @@
       const id = courseIdFromHref(link.getAttribute("href"));
       if (!id) return;
       const container = link.closest(containers);
+      // Without a course card around it, only trust plain content links (not menus,
+      // breadcrumbs or our own switcher).
+      if (!container && link.closest(
+        ".plato-classic-course-switcher-menu, .breadcrumb, nav, #pw-nav-menu, header, footer"
+      )) return;
       const titleNode = container?.querySelector(
         "[data-region='course-name'], .coursename, .course-title, h3, h4, h5"
       );
@@ -94,13 +99,18 @@
   };
 
   const sendRuntimeMessage = (message) => new Promise((resolve) => {
-    chrome.runtime.sendMessage(message, (response) => {
-      if (chrome.runtime.lastError) {
-        resolve(null);
-        return;
-      }
-      resolve(response || null);
-    });
+    try {
+      chrome.runtime.sendMessage(message, (response) => {
+        if (chrome.runtime.lastError) {
+          resolve(null);
+          return;
+        }
+        resolve(response || null);
+      });
+    } catch (_) {
+      // Extension was reloaded/updated while this page stayed open.
+      resolve(null);
+    }
   });
 
   const readCourseCache = async () => {
@@ -139,8 +149,10 @@
       && Date.now() - cache.updatedAt < courseCacheMaxAge;
     if (!cacheIsFresh || courses.filter((course) => course.courseId !== currentId).length === 0) {
       const fetchedCourses = await fetchDashboardCourses();
-      courses = mergeCourses(courses, fetchedCourses);
-      if (fetchedCourses.length) await writeCourseCache(courses);
+      // The dashboard's order is the PLATO home order, so it leads the merge.
+      courses = mergeCourses(fetchedCourses, courses);
+      // Cache only the dashboard list (plus earlier cache), not links scraped from this page.
+      if (fetchedCourses.length) await writeCourseCache(mergeCourses(fetchedCourses, cachedCourses));
     }
     return courses;
   };
@@ -229,6 +241,7 @@
       || courseIdFromBody();
     if (!courseId) return;
     host.dataset.classicCourseId = courseId;
+    document.documentElement.classList.add(ACTIVE_CLASS);
 
     const text = enhanceCurrentCourse(host, courseId);
     if (host.querySelector(".plato-classic-course-switcher-button")) return;
@@ -293,10 +306,19 @@
       button.setAttribute("aria-expanded", "true");
       if (loaded) return;
       loaded = true;
-      const courses = (await getCourses())
-        .filter((course) => course.courseId !== courseId)
-        .sort((a, b) => a.title.localeCompare(b.title, "ko"));
-      renderCourseSwitcherItems(list, courses);
+      try {
+        // Keep the PLATO home order recorded by the dashboard and /my/ fetch.
+        const courses = (await getCourses())
+          .filter((course) => course.courseId !== courseId);
+        renderCourseSwitcherItems(list, courses);
+      } catch (_) {
+        loaded = false;
+        coursesPromise = null;
+        const failed = document.createElement("li");
+        failed.className = "plato-classic-course-switcher-empty";
+        failed.textContent = "강좌 목록을 불러오지 못했습니다. 다시 열어 주세요.";
+        list.replaceChildren(failed);
+      }
     };
 
     button.addEventListener("click", (event) => {
@@ -336,7 +358,7 @@
 
   chrome.storage.local.get({ classicEnabled: true, dashboardEnabled: true }, (settings) => {
     const enabled = settings.classicEnabled !== false && settings.dashboardEnabled !== false;
-    document.documentElement.classList.toggle(ACTIVE_CLASS, enabled);
     if (enabled) start();
+    else document.documentElement.classList.remove(ACTIVE_CLASS);
   });
 })();

@@ -5,6 +5,7 @@
   // are excluded:
   //   (출석 + 지각 + 조퇴 + 지각조퇴) / (출석 + 결석 + 지각 + 조퇴 + 지각조퇴)
   const STATUS = { present: "1", absent: "2", late: "3", lateEarly: "5", early: "6", none: "0" };
+  const LEVEL_PATTERN = /^level-\d+$/;
 
   const readCount = (root, status) => {
     const node = root.querySelector(`.status-item[data-status="${status}"] .count`);
@@ -20,11 +21,23 @@
     return ["놓친 수업이 <span>많습니다.</span>", "앞으로는 출석을 우선 순위로 두면 성적에도 긍정적인 변화가 있을 거에요."];
   };
 
+  // Color tier used by styles/attendance.css. PLATO colors the bar/percent from the
+  // rate it calculated itself, so we set our own tier to follow the recalculated rate.
+  const tierOf = (rate) => {
+    if (rate === null) return "none";
+    if (rate >= 90) return "good";
+    if (rate >= 80) return "fair";
+    if (rate >= 70) return "warn";
+    return "bad";
+  };
+
   const formatRate = (rate) => `${Number(rate.toFixed(2))}%`;
 
   const recalculate = () => {
     const container = document.querySelector(".my-userinfo-attendance-container");
     if (!container || container.dataset.classicRate) return;
+    // Markup changed or not rendered yet: leave PLATO's own numbers untouched.
+    if (!container.querySelector(".status-item[data-status]")) return;
 
     const count = Object.fromEntries(
       Object.entries(STATUS).map(([key, status]) => [key, readCount(container, status)])
@@ -32,6 +45,7 @@
     const attended = count.present + count.late + count.early + count.lateEarly;
     const processed = attended + count.absent;
     const rate = processed > 0 ? (attended / processed) * 100 : null;
+    const tier = tierOf(rate);
 
     const progress = container.querySelector(".progress[role='progressbar']");
     const bar = container.querySelector(".progress-bar");
@@ -42,10 +56,17 @@
     const originalRate = percent?.textContent.trim() || "";
 
     container.dataset.classicRate = rate === null ? "none" : rate.toFixed(2);
+    container.dataset.classicTier = tier;
+    document.documentElement.classList.add("plato-classic-attendance-active");
+
     if (progress) progress.setAttribute("aria-valuenow", rate === null ? "0" : rate.toFixed(2));
-    if (bar) bar.style.width = `${rate === null ? 0 : rate}%`;
+    if (bar) {
+      bar.style.width = `${rate === null ? 0 : rate}%`;
+      bar.dataset.classicTier = tier;
+    }
     if (percent) {
       percent.textContent = rate === null ? "-" : formatRate(rate);
+      percent.dataset.classicTier = tier;
       if (originalRate) percent.title = `PLATO 기본 계산(결강·미처리 포함): ${originalRate}`;
     }
 
@@ -61,11 +82,12 @@
       if (count.none > 0) info.append(` (결강·미처리 ${count.none}개 제외)`);
     }
 
-    if (body && rate !== null) {
+    if (body) {
       [...body.classList]
-        .filter((name) => /^level-\d+$/.test(name))
+        .filter((name) => LEVEL_PATTERN.test(name))
         .forEach((name) => body.classList.remove(name));
-      body.classList.add(`level-${Math.min(100, Math.floor(rate / 10) * 10)}`);
+      if (rate !== null) body.classList.add(`level-${Math.min(100, Math.floor(rate / 10) * 10)}`);
+      body.dataset.classicTier = tier;
     }
 
     if (guide) {

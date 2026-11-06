@@ -172,6 +172,34 @@ const fetchLegacyTermInTab = (year, semester) => new Promise((resolve, reject) =
   });
 });
 
+// A logged-out dev-plato session redirects the hidden tab to a login page, where the
+// bridge script never reports back. Close such tabs right away instead of waiting
+// for LEGACY_TAB_TIMEOUT. (tab.url is only visible for dev-plato pages, so a tab that
+// finished loading somewhere else, e.g. an SSO page, has no url here.)
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status !== "complete" && !changeInfo.url) return;
+  const pending = [...pendingLegacyTabs.values()].find((entry) => entry.tabId === tabId);
+  if (!pending) return;
+  let leftBridgePage = false;
+  if (!tab?.url) {
+    leftBridgePage = changeInfo.status === "complete";
+  } else {
+    try {
+      const url = new URL(tab.url);
+      leftBridgePage = url.origin !== LEGACY_ORIGIN ||
+        url.pathname.startsWith("/login/") ||
+        url.searchParams.get("plato_classic_bridge") !== pending.requestId;
+    } catch {
+      leftBridgePage = true;
+    }
+  }
+  if (!leftBridgePage) return;
+  clearTimeout(pending.timer);
+  pendingLegacyTabs.delete(pending.requestId);
+  closeLegacyTab(tabId);
+  pending.reject(new Error("legacy authentication required"));
+});
+
 const fetchLegacyTerm = async (year, semester) => {
   const numericYear = Number(year);
   legacyTermUrl(numericYear, semester);

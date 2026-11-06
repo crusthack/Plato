@@ -314,6 +314,7 @@
     document.querySelectorAll(".btn-notification .notification-badge, .notification-badge")
       .forEach((node) => {
         if (header.contains(node)) return;
+        if (node.textContent === String(count) && node.hidden === (count === 0)) return;
         node.textContent = String(count);
         node.hidden = count === 0;
         node.style.display = count === 0 ? "none" : "";
@@ -383,6 +384,7 @@
     if (detail) state.append(element("span", "", detail));
     notificationList.append(state);
   };
+  let notificationUnread = null;
   const renderNotifications = (items, unreadCount = null, { fromServer = false } = {}) => {
     notificationList.replaceChildren();
     if (fromServer) {
@@ -390,6 +392,7 @@
       // so the badge must follow the fresh result instead of the page-load badge.
       const itemUnread = items.filter((item) => item.read !== true).length;
       const count = unreadCount === null ? itemUnread : Math.min(itemUnread, unreadCount);
+      notificationUnread = count;
       setNativeUnreadCount(count);
       updateNotificationCount(count);
     } else if (syncNativeUnreadCount() === null) {
@@ -481,7 +484,7 @@
         return Promise.resolve();
       }
       if (notificationFetchedAt && Date.now() - notificationFetchedAt < NOTIFICATION_CACHE_MS) {
-        renderNotifications(notificationItems, null, { fromServer: true });
+        renderNotifications(notificationItems, notificationUnread, { fromServer: true });
         return Promise.resolve();
       }
       if (notificationAttemptedAt && Date.now() - notificationAttemptedAt < NOTIFICATION_RETRY_MS) {
@@ -497,6 +500,7 @@
         notificationItems = items;
         notificationTotal = total;
         notificationFetchedAt = Date.now();
+        notificationUnread = unread;
         renderNotifications(items, unread, { fromServer: true });
       })
       .catch(() => {
@@ -506,7 +510,8 @@
           notificationTotal = localItems.length;
           renderNotifications(localItems);
         } else {
-          updateNotificationCount(0);
+          // Keep whatever PLATO's own badge says instead of hiding unread notifications.
+          syncNativeUnreadCount();
           renderNotificationState("알림을 불러오지 못했습니다.", "잠시 후 새로고침하거나 알림 센터에서 확인해 주세요.");
         }
       })

@@ -938,12 +938,18 @@
     pendingLegacyTermKey = "";
     scheduleCourseTableRefresh(0);
   });
+  // Retry a failed legacy (dev-plato) load on focus, but at most once a minute so a
+  // logged-out dev-plato session does not open a hidden tab on every focus.
+  const LEGACY_FOCUS_RETRY_MS = 60_000;
+  let lastLegacyFocusRetry = 0;
   window.addEventListener("focus", () => {
     if (!document.documentElement.classList.contains(ACTIVE_CLASS) ||
       renderedCourseState.mode !== "legacy-error") return;
     const term = selectedTerm();
     if (!term.key || term.key !== renderedCourseState.key ||
       !shouldUseLegacyTerm(term.year, term.semester)) return;
+    if (Date.now() - lastLegacyFocusRetry < LEGACY_FOCUS_RETRY_MS) return;
+    lastLegacyFocusRetry = Date.now();
     requestLegacyRefresh(term);
   });
 
